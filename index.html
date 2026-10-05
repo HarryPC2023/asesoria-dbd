@@ -9,97 +9,146 @@
     href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="estilos.css">
-  <link rel="stylesheet" href="lightbox.css">
 </head>
 
 <body>
 
-  <!-- ── HEADER ──────────────────────────────────────────────────── -->
-  <header id="header">
-    <div class="brand">Asesoría PC1 <span>— Diseño de Base de Datos</span></div>
-  </header>
+  <!-- Todo el contenido vive dentro de #asesoria-pc1: así el CSS y el JS no chocan con SIGA -->
+  <div class="asesoria-pc1" id="asesoria-pc1">
 
-  <!-- ── NAVBAR ──────────────────────────────────────────────────── -->
-  <nav id="navbar">
-    <button class="nav-btn active" onclick="showPage('welcome-page',this)">Inicio</button>
-    <button class="nav-btn" onclick="showPage('intro-page',this)">Intro</button>
-    <button class="nav-btn" onclick="showPage('tools-page',this)">Herramientas</button>
-    <button class="nav-btn" onclick="showPage('concepts-page',this)">Conceptos</button>
-    <button class="nav-btn" onclick="showPage('components-page',this)">Componentes</button>
-    <button class="nav-btn" onclick="showPage('defense-page',this)">Preguntas Profesor</button>
-    <button class="nav-btn" onclick="showPage('tips-page',this)">Tips</button>
-  </nav>
+    <!-- ── CABECERA, NAVEGACIÓN Y AVANCE ──────────────────────────── -->
+    <header class="ap-header">
+      <button class="ap-brand" data-go="inicio" type="button">
+        <span class="ap-logo">PC1</span>
+        <span>Asesoría PC1<small>Diseño de Base de Datos</small></span>
+      </button>
 
-  <main>
+      <nav class="ap-nav" aria-label="Secciones de la asesoría">
+        <button class="ap-nav-btn active" data-go="inicio" type="button">Inicio</button>
+        <button class="ap-nav-btn" data-go="antes" type="button">Antes de empezar</button>
+        <button class="ap-nav-btn" data-go="concepto" type="button">Concepto</button>
+        <button class="ap-nav-btn" data-go="arquitectura" type="button">Arquitectura</button>
+        <button class="ap-nav-btn" data-go="componentes" type="button">Componentes</button>
+        <button class="ap-nav-btn" data-go="defensa" type="button">Defensa oral</button>
+        <button class="ap-nav-btn" data-go="tips" type="button">Tips</button>
+      </nav>
 
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!-- WELCOME -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div id="welcome-page" class="section-page active">
-      <div id="welcome">
-        <h1 class="welcome-title">Asesoría PC1</h1>
-        <p class="welcome-subtitle">Diseño de Base de Datos</p>
-        <p class="welcome-meta">
-          <strong>Curso:</strong> Diseño de Base de Datos (DBD) &nbsp;·&nbsp;
-          <strong>Profesor:</strong> Dr. Tino Reyna Monteverde &nbsp;·&nbsp;
-        </p>
-        <button class="btn-start" onclick="startSession()">Comenzar Asesoría →</button>
-        <div id="firma-harry">
-          <img src="imagenes/Harry.jpg" alt="Harry">
-          <span>by Harry</span>
+      <div class="ap-progress" title="Tu avance en la ruta de estudio">
+        <div class="ap-progress-track">
+          <div class="ap-progress-fill"></div>
         </div>
+        <span id="ap-progress-label">Ruta 0%</span>
       </div>
-    </div>
+    </header>
 
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!-- INTRO -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div id="intro-page" class="section-page">
-      <div class="section">
-        <div class="section-header">
-          <span class="section-tag">Antes de empezar</span>
-          <h1 class="section-title">Requisito previo</h1>
+    <main class="ap-main">
+
+      <!-- ════════════════════════════════════════════════════════════ -->
+      <!-- 1 · INICIO -->
+      <!-- ════════════════════════════════════════════════════════════ -->
+      <section class="page active" data-page="inicio">
+
+        <div class="hero">
+          <span class="hero-kicker">Práctica Calificada 1 · Diseño Externo</span>
+          <h1 class="hero-title">Asesoría PC1<br><span>Diseño de Base de Datos</span></h1>
+          <p class="hero-sub">Diseña la cara visible de tu sistema y defiéndela con seguridad.</p>
+          <p class="hero-meta">
+            <strong>Curso:</strong> Diseño de Base de Datos (DBD) &nbsp;·&nbsp;
+            <strong>Profesor:</strong> Dr. Tino Reyna Monteverde
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" data-go="antes" type="button">▶ Empezar ruta</button>
+            <button class="btn btn-ghost" data-go="arquitectura" type="button">🗺 Ver arquitectura</button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-chip"><b>6</b>sistemas de ejemplo</div>
+            <div class="stat-chip"><b>11</b>componentes</div>
+            <div class="stat-chip"><b>🎤</b>simulador de defensa</div>
+          </div>
+          <div class="signature">
+            <img src="imagenes/Harry.jpg" alt="Harry">
+            <span>by Harry</span>
+          </div>
         </div>
 
-        <div class="alert alert-orange">
-          <div class="alert-icon">⚠️</div>
-          <div class="alert-body">
+        <div class="home-section">
+          <h2>Tu ruta de estudio</h2>
+          <p>Sigue los pasos en orden. Cada uno se marca ✓ cuando lo visitas.</p>
+          <ol class="route">
+            <li><button class="route-step" data-go="concepto" data-anchor="que-es" data-step="1" type="button">
+                <span class="route-dot">1</span><span class="route-label">Qué es</span></button></li>
+            <li><button class="route-step" data-go="concepto" data-anchor="que-se-evalua" data-step="2" type="button">
+                <span class="route-dot">2</span><span class="route-label">Qué se evalúa</span></button></li>
+            <li><button class="route-step" data-go="arquitectura" data-step="3" type="button">
+                <span class="route-dot">3</span><span class="route-label">Arquitectura</span></button></li>
+            <li><button class="route-step" data-go="componentes" data-step="4" type="button">
+                <span class="route-dot">4</span><span class="route-label">Componentes</span></button></li>
+            <li><button class="route-step" data-go="defensa" data-step="5" type="button">
+                <span class="route-dot">5</span><span class="route-label">Defensa oral</span></button></li>
+          </ol>
+        </div>
+
+        <div class="home-section">
+          <h2>Mapa de la arquitectura</h2>
+          <p>Toca cualquier componente para ir directo a su explicación.</p>
+          <div data-mapa></div>
+        </div>
+
+        <div class="home-section">
+          <h2>Elige un sistema de ejemplo</h2>
+          <p>Las pestañas de cada componente se abrirán con el sistema que elijas.</p>
+          <div class="sys-picker">
+            <button class="sys-chip" data-sys="cob" data-sys-pick="cob" data-go="componentes"
+              type="button">Cobranzas</button>
+            <button class="sys-chip" data-sys="ven" data-sys-pick="ven" data-go="componentes"
+              type="button">Ventas</button>
+            <button class="sys-chip" data-sys="tra" data-sys-pick="tra" data-go="componentes"
+              type="button">Transporte</button>
+            <button class="sys-chip" data-sys="con" data-sys-pick="con" data-go="componentes"
+              type="button">Contabilidad</button>
+            <button class="sys-chip" data-sys="rec" data-sys-pick="rec" data-go="componentes"
+              type="button">Reclamos</button>
+            <button class="sys-chip" data-sys="alm" data-sys-pick="alm" data-go="componentes"
+              type="button">Almacenamiento</button>
+          </div>
+        </div>
+
+        <nav class="page-pager" data-pager></nav>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════ -->
+      <!-- 2 · ANTES DE EMPEZAR (requisito previo + herramientas) -->
+      <!-- ════════════════════════════════════════════════════════════ -->
+      <section class="page" data-page="antes">
+        <div class="page-head">
+          <span class="page-tag">Antes de empezar</span>
+          <h1 class="page-title">Requisito previo y herramientas</h1>
+        </div>
+
+        <div class="callout callout-warn">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-body">
             <h4>REQUISITO PREVIO</h4>
             <p>Para esta práctica necesitas tener tu sistema modelado conceptualmente. Ese trabajo fue desarrollado en
               el curso de <strong>Modelado Conceptual de Datos (MCD)</strong>.</p>
           </div>
         </div>
 
-        <div class="alert alert-navy">
-          <div class="alert-icon">💡</div>
-          <div class="alert-body">
+        <div class="callout callout-info">
+          <div class="callout-icon">💡</div>
+          <div class="callout-body">
             <h4>¿No llevaste MCD con el profesor actual?</h4>
             <p>Debes conocer a fondo el sistema que vas a diseñar: su lógica, sus procesos y sus datos. Búscate los
               recursos necesarios y familiarízate con él antes de la práctica.</p>
           </div>
         </div>
 
-        <div class="highlight-bar">
-          No puedes diseñar lo que no entiendes.
-        </div>
-      </div>
-    </div>
+        <div class="highlight-bar">No puedes diseñar lo que no entiendes.</div>
 
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!-- HERRAMIENTAS -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div id="tools-page" class="section-page">
-      <div class="section">
-        <div class="section-header">
-          <span class="section-tag">Herramientas</span>
-          <h1 class="section-title">¿Con qué herramienta diseño mi prototipo?</h1>
-        </div>
-
+        <h2 class="subtitle" style="font-size:1.3rem">¿Con qué herramienta diseño mi prototipo?</h2>
         <div class="tool-grid">
-          <div class="tool-card">
-            <div class="tool-head" style="background:var(--navy-mid)">
-              BALSAMIQ
-              <div class="tool-badge">⭐ Recomendada</div>
+          <div class="tool-card t-balsamiq">
+            <div class="tool-head">BALSAMIQ<div class="tool-badge">⭐ Recomendada</div>
             </div>
             <div class="tool-body">
               <ul>
@@ -110,10 +159,8 @@
               </ul>
             </div>
           </div>
-          <div class="tool-card">
-            <div class="tool-head" style="background:var(--teal)">
-              FIGMA
-              <div class="tool-badge">⭐ Recomendada</div>
+          <div class="tool-card t-figma">
+            <div class="tool-head">FIGMA<div class="tool-badge">⭐ Recomendada</div>
             </div>
             <div class="tool-body">
               <ul>
@@ -124,10 +171,8 @@
               </ul>
             </div>
           </div>
-          <div class="tool-card">
-            <div class="tool-head" style="background:var(--gray-600)">
-              ALTERNATIVAS
-              <div class="tool-badge">Gratuitas</div>
+          <div class="tool-card t-alt">
+            <div class="tool-head">ALTERNATIVAS<div class="tool-badge">Gratuitas</div>
             </div>
             <div class="tool-body">
               <ul>
@@ -140,78 +185,38 @@
           </div>
         </div>
 
-        <div class="alert alert-teal">
-          <div class="alert-icon">💡</div>
-          <div class="alert-body">
+        <div class="callout callout-tip">
+          <div class="callout-icon">💡</div>
+          <div class="callout-body">
             <p>Lo importante no es la herramienta, sino la claridad y calidad del diseño que produces con ella.</p>
           </div>
         </div>
 
-        <!-- ¿Qué espera ver el profesor? -->
-        <div class="section-header" style="margin-top:2.5rem">
-          <h2 class="section-title" style="font-size:1.4rem">¿Qué espera ver el profesor?</h2>
+        <nav class="page-pager" data-pager></nav>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════ -->
+      <!-- 3 · CONCEPTO (qué es + qué se evalúa) -->
+      <!-- ════════════════════════════════════════════════════════════ -->
+      <section class="page" data-page="concepto">
+        <div class="page-head">
+          <span class="page-tag">Conceptos fundamentales</span>
+          <h1 class="page-title">Base teórica del diseño externo</h1>
         </div>
 
-        <div class="compare-grid">
-          <div class="compare-col">
-            <div class="compare-head bad">❌ INSUFICIENTE</div>
-            <div class="compare-body bad">
-              <ul>
-                <li>Cajas vacías sin contenido real</li>
-                <li>Sin URL ni nombre del sistema</li>
-                <li>Sin navegación entre pantallas</li>
-                <li>Solo una pantalla por módulo</li>
-                <li>Datos sin coherencia con el sistema</li>
-              </ul>
-            </div>
+        <!-- Paso 1 · ¿Qué es el Diseño Externo? -->
+        <div class="block" id="que-es">
+          <div class="block-head">
+            <h2>1 · ¿Qué es el Diseño Externo?</h2>
+            <p>La representación visual del sistema</p>
           </div>
-          <div class="compare-col">
-            <div class="compare-head good">✅ LO QUE SE ESPERA</div>
-            <div class="compare-body good">
-              <ul>
-                <li>Pantallas con datos representativos</li>
-                <li>URL visible y coherente con el sistema</li>
-                <li>Botones, menús y flujos definidos</li>
-                <li>Todos los componentes del módulo</li>
-                <li>Coherente con la arquitectura presentada</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="alert alert-orange">
-          <div class="alert-icon">⚠️</div>
-          <div class="alert-body">
-            <p>El profesor revisará cada pantalla durante la exposición oral. Debes poder explicar cada elemento que
-              aparece.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!-- CONCEPTOS -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div id="concepts-page" class="section-page">
-      <div class="section">
-        <div class="section-header">
-          <span class="section-tag">Conceptos fundamentales</span>
-          <h1 class="section-title">Base teórica del diseño externo</h1>
-        </div>
-
-        <!-- ¿Qué es el Diseño Externo? -->
-        <div class="comp-block mb-3">
-          <div class="comp-block-head">
-            <h2>¿Qué es el Diseño Externo?</h2>
-            <div class="comp-sub">La representación visual del sistema</div>
-          </div>
-          <div class="comp-block-body">
-            <p class="text-muted italic mb-2">Es la representación visual de cómo los usuarios interactúan con el
-              sistema a través de sus interfaces.</p>
+          <div class="block-body">
+            <p class="muted italic">Es la representación visual de cómo los usuarios interactúan con el sistema a
+              través de sus interfaces.</p>
             <div class="compare-grid">
-              <div class="compare-col">
-                <div class="compare-head good">✅ SÍ INCLUYE</div>
-                <div class="compare-body good">
+              <div class="compare-col good">
+                <div class="compare-head">✅ SÍ INCLUYE</div>
+                <div class="compare-body">
                   <ul>
                     <li>Pantallas de acceso y control de usuarios</li>
                     <li>Menús de navegación del sistema</li>
@@ -222,9 +227,9 @@
                   </ul>
                 </div>
               </div>
-              <div class="compare-col">
-                <div class="compare-head bad">❌ NO INCLUYE</div>
-                <div class="compare-body bad">
+              <div class="compare-col bad">
+                <div class="compare-head">❌ NO INCLUYE</div>
+                <div class="compare-body">
                   <ul>
                     <li>Código fuente ni programación</li>
                     <li>Diseño físico de tablas (IC, capacidad)</li>
@@ -234,9 +239,9 @@
                 </div>
               </div>
             </div>
-            <div class="alert alert-teal mt-2">
-              <div class="alert-icon">💡</div>
-              <div class="alert-body">
+            <div class="callout callout-tip">
+              <div class="callout-icon">💡</div>
+              <div class="callout-body">
                 <p>Implementar el sistema <strong>no garantiza mejor nota</strong>. Lo que se evalúa es la calidad del
                   diseño externo.</p>
               </div>
@@ -244,86 +249,25 @@
           </div>
         </div>
 
-        <!-- ¿Qué es la Arquitectura del Software? -->
-        <div class="comp-block mb-3">
-          <div class="comp-block-head">
-            <h2>¿Qué es la Arquitectura del Software?</h2>
-            <div class="comp-sub">Primera diapositiva de tu presentación — muestra TODOS los módulos organizados</div>
+        <!-- Paso 2 · ¿Qué se evalúa? -->
+        <div class="block" id="que-se-evalua">
+          <div class="block-head">
+            <h2>2 · ¿Cómo te evalúa el profesor?</h2>
+            <p>Rúbrica y criterios de calificación</p>
           </div>
-          <div class="comp-block-body">
-            <p class="text-muted italic mb-2">Primer elemento de tu presentación. Muestra todos los módulos organizados
-              por tipo de usuario y tipo de procesamiento.</p>
-            <div class="online-batch">
-              <div class="card">
-                <div class="card-head" style="background:var(--navy-mid)">🖥️ ON-LINE</div>
-                <div class="card-body">
-                  <p class="italic text-muted mb-1" style="font-size:0.82rem">Procesos en tiempo real, con usuario
-                    presente</p>
-                  <ul>
-                    <li>Seguridad (login y perfiles)</li>
-                    <li>Gerencial (menús, catálogos, consultas)</li>
-                    <li>Operativo (proceso central, reportes)</li>
-                    <li>Aplicativo (KPIs, gráficas)</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-head" style="background:var(--teal)">⚙️ BATCH</div>
-                <div class="card-body">
-                  <p class="italic text-muted mb-1" style="font-size:0.82rem">Procesos automáticos, sin intervención del
-                    usuario</p>
-                  <ul>
-                    <li>Actualización de base de datos</li>
-                    <li>Generación de estadísticas</li>
-                    <li>Fabricación de tickets / documentos</li>
-                    <li>Actualización de protocolos</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <!-- Arquitecturas reales -->
-            <h4 class="bold mt-2 mb-1" style="font-size:0.95rem;color:var(--navy)">Ejemplos de arquitectura por sistema:
-            </h4>
-            <div class="arch-grid">
-              <div class="arch-card">
-                <div class="arch-card-head" style="background:var(--sys-cob)">🔵 Sistema de Cobranzas</div>
-                <img src="imagenes/arquitectura_cobranza.png" alt="Arquitectura Cobranzas">
-              </div>
-              <div class="arch-card">
-                <div class="arch-card-head" style="background:var(--sys-tra)">🟠 Sistema de Transporte</div>
-                <img src="imagenes/arquitectura_transporte.png" alt="Arquitectura Transporte">
-              </div>
-            </div>
-
-            <div class="alert alert-orange mt-2">
-              <div class="alert-icon">⚠️</div>
-              <div class="alert-body">
-                <p>Todo lo que aparece en la arquitectura debe estar diseñado. Si no lo diseñaste, <strong>no debe
-                    aparecer</strong>.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ¿Cómo evalúa el profesor? -->
-        <div class="comp-block">
-          <div class="comp-block-head">
-            <h2>¿Cómo te evalúa el profesor?</h2>
-            <div class="comp-sub">Rúbrica y criterios de calificación</div>
-          </div>
-          <div class="comp-block-body">
-            <div class="alert alert-navy mb-2">
-              <div class="alert-icon">📋</div>
-              <div class="alert-body">
+          <div class="block-body">
+            <div class="callout callout-info" style="margin-top:0">
+              <div class="callout-icon">📋</div>
+              <div class="callout-body">
                 <h4>FORMATO DE ENTREGA</h4>
                 <p>Presentación PowerPoint &nbsp;·&nbsp; Folder físico con diapositivas impresas &nbsp;·&nbsp;
                   Exposición oral proyectando el trabajo</p>
               </div>
             </div>
+
             <div class="eval-grid">
               <div class="eval-card">
-                <div class="eval-head" style="background:var(--gray-400)">🖥️ DISEÑO VISUAL</div>
+                <div class="eval-head">🖥️ DISEÑO VISUAL</div>
                 <div class="eval-body">
                   <ul>
                     <li>Calidad de los mockups y prototipos</li>
@@ -332,8 +276,8 @@
                   </ul>
                 </div>
               </div>
-              <div class="eval-card" style="border-color:var(--teal)">
-                <div class="eval-head" style="background:var(--teal)">🎤 EXPOSICIÓN ORAL ⭐ MAYOR PESO</div>
+              <div class="eval-card star">
+                <div class="eval-head">🎤 EXPOSICIÓN ORAL ⭐ MAYOR PESO</div>
                 <div class="eval-body">
                   <ul>
                     <li>Claridad al exponer el trabajo</li>
@@ -343,71 +287,207 @@
                 </div>
               </div>
             </div>
-            <div class="alert alert-red">
-              <div class="alert-icon">⚠️</div>
-              <div class="alert-body">
+
+            <div class="callout callout-danger">
+              <div class="callout-icon">⚠️</div>
+              <div class="callout-body">
                 <p>El profesor puede preguntarle a <strong>CUALQUIER integrante</strong>. Todos deben entender TODO el
                   trabajo.</p>
+              </div>
+            </div>
+
+            <h3 class="subtitle">¿Qué espera ver el profesor en cada pantalla?</h3>
+            <div class="compare-grid">
+              <div class="compare-col bad">
+                <div class="compare-head">❌ INSUFICIENTE</div>
+                <div class="compare-body">
+                  <ul>
+                    <li>Cajas vacías sin contenido real</li>
+                    <li>Sin URL ni nombre del sistema</li>
+                    <li>Sin navegación entre pantallas</li>
+                    <li>Solo una pantalla por módulo</li>
+                    <li>Datos sin coherencia con el sistema</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="compare-col good">
+                <div class="compare-head">✅ LO QUE SE ESPERA</div>
+                <div class="compare-body">
+                  <ul>
+                    <li>Pantallas con datos representativos</li>
+                    <li>URL visible y coherente con el sistema</li>
+                    <li>Botones, menús y flujos definidos</li>
+                    <li>Todos los componentes del módulo</li>
+                    <li>Coherente con la arquitectura presentada</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="callout callout-warn">
+              <div class="callout-icon">⚠️</div>
+              <div class="callout-body">
+                <p>El profesor revisará cada pantalla durante la exposición oral. Debes poder explicar cada elemento
+                  que aparece.</p>
               </div>
             </div>
           </div>
         </div>
 
-      </div>
-    </div>
+        <nav class="page-pager" data-pager></nav>
+      </section>
 
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!-- COMPONENTES -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div id="components-page" class="section-page">
-      <div class="section" style="padding-bottom:1rem">
-        <div class="section-header">
-          <span class="section-tag">Componentes</span>
-          <h1 class="section-title">Diseñando cada parte del sistema</h1>
+      <!-- ════════════════════════════════════════════════════════════ -->
+      <!-- 4 · ARQUITECTURA -->
+      <!-- ════════════════════════════════════════════════════════════ -->
+      <section class="page" data-page="arquitectura">
+        <div class="page-head">
+          <span class="page-tag">Arquitectura</span>
+          <h1 class="page-title">¿Qué es la Arquitectura del Software?</h1>
+          <p class="page-lead">Primera diapositiva de tu presentación — muestra TODOS los módulos organizados por tipo
+            de usuario y tipo de procesamiento.</p>
         </div>
-        <p class="text-muted italic mb-3">Selecciona un componente para ver su explicación detallada, ejemplos y errores
-          frecuentes.</p>
-      </div>
 
-      <!-- GRID DE COMPONENTES -->
-      <div id="comp-nav-panel">
-        <h3>Selecciona un componente:</h3>
-        <div class="comp-grid">
-          <button class="comp-card" onclick="showComp('login')"><span class="comp-icon">🔐</span>Control Acceso<span
-              class="comp-num">01</span></button>
-          <button class="comp-card" onclick="showComp('perfiles')"><span class="comp-icon">👥</span>Perfiles y
-            Permisos<span class="comp-num">02</span></button>
-          <button class="comp-card" onclick="showComp('catalogos')"><span class="comp-icon">📋</span>Catálogos<span
-              class="comp-num">03</span></button>
-          <button class="comp-card" onclick="showComp('proceso')"><span class="comp-icon">⚙️</span>Proceso Central<span
-              class="comp-num">04</span></button>
-          <button class="comp-card" onclick="showComp('consultas')"><span class="comp-icon">🔍</span>Consultas<span
-              class="comp-num">05</span></button>
-          <button class="comp-card" onclick="showComp('kpis')"><span class="comp-icon">📊</span>KPIs<span
-              class="comp-num">06</span></button>
-          <button class="comp-card" onclick="showComp('graficas')"><span class="comp-icon">📈</span>Gráficas<span
-              class="comp-num">07</span></button>
-          <button class="comp-card" onclick="showComp('reportes')"><span class="comp-icon">📄</span>Reportes<span
-              class="comp-num">08</span></button>
-          <button class="comp-card" onclick="showComp('protocolos')"><span class="comp-icon">📜</span>Protocolos<span
-              class="comp-num">09</span></button>
-          <button class="comp-card" onclick="showComp('batch')"><span class="comp-icon">🤖</span>Módulo BATCH<span
-              class="comp-num">10</span></button>
-          <button class="comp-card" onclick="showComp('backup')"><span class="comp-icon">💾</span>Backup & Mant.<span
-              class="comp-num">11</span></button>
+        <!-- Mapa interactivo (mismo componente que en Inicio) -->
+        <div data-mapa></div>
+
+        <h3 class="subtitle">Cómo leer el mapa</h3>
+        <div class="seg-bar" data-mod="seg">
+          <span style="font-size:1.6rem">🛡️</span>
+          <div><strong>Seguridad</strong> — login y perfiles. Se coloca aparte, porque controla el acceso a todo el
+            sistema.</div>
         </div>
-      </div>
 
-      <!-- ── DETALLE: CONTROL DE ACCESO ────────────────────────────────────────── -->
-      <div class="comp-detail" id="detail-login">
-        <button class="btn-back" onclick="backToCompGrid()">← Volver al listado</button>
-        <div class="comp-block">
-          <div class="comp-block-head">
-            <h2>🔐 Control de Acceso — Pantalla de Ingreso</h2>
-            <div class="comp-sub">Primera pantalla — controla QUIÉN puede ingresar</div>
+        <div class="arch-split">
+          <div class="arch-box online">
+            <div class="arch-box-head">🖥️ ON-LINE — procesos en tiempo real, con usuario presente</div>
+            <div class="arch-box-body">
+              <div class="module-line" data-mod="ger"><b>Gerencial</b>
+                <span>Mantenimiento de parámetros (catálogos), consultas, KPIs y gráficas. Los KPIs solo se
+                  <strong>visualizan</strong> aquí.</span>
+              </div>
+              <div class="module-line" data-mod="ope"><b>Operativo</b>
+                <span>Proceso central (ingreso de datos) y reportes.</span>
+              </div>
+            </div>
           </div>
-          <div class="comp-block-body">
-            <div class="requires-box">
+          <div class="arch-box batch">
+            <div class="arch-box-head">⚙️ BATCH — procesos automáticos, sin intervención del usuario</div>
+            <div class="arch-box-body">
+              <div class="module-line" data-mod="apl"><b>Aplicativo</b>
+                <span>Actualización de base de datos, generación de estadísticas (aquí se <strong>calculan</strong> los
+                  KPIs), fabricación de tickets / documentos y actualización de protocolos.</span>
+              </div>
+              <div class="module-line" data-mod="tec"><b>Técnico</b>
+                <span>Mantenimiento de la base de datos y contingencia (backup).</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-tip">
+          <div class="callout-icon">💡</div>
+          <div class="callout-body">
+            <h4>El KPI se calcula en BATCH y se visualiza en ON-LINE</h4>
+            <p>En la parte gerencial solo se entra a ver el resultado del KPI; el cálculo ocurre en el proceso batch.
+            </p>
+          </div>
+        </div>
+
+        <h3 class="subtitle">Ejemplos de arquitectura por sistema</h3>
+        <div class="arch-grid">
+          <div class="arch-card">
+            <div class="arch-card-head" style="background:var(--sys-cob)">🔵 Sistema de Cobranzas</div>
+            <img src="imagenes/arquitectura_cobranza.png" alt="Arquitectura Cobranzas">
+          </div>
+          <div class="arch-card">
+            <div class="arch-card-head" style="background:var(--sys-tra)">🟠 Sistema de Transporte</div>
+            <img src="imagenes/arquitectura_transporte.png" alt="Arquitectura Transporte">
+          </div>
+        </div>
+
+        <div class="callout callout-warn">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-body">
+            <p>Todo lo que aparece en la arquitectura debe estar diseñado. Si no lo diseñaste,
+              <strong>no debe aparecer</strong>.
+            </p>
+          </div>
+        </div>
+
+        <nav class="page-pager" data-pager></nav>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════ -->
+      <!-- 5 · COMPONENTES -->
+      <!-- ════════════════════════════════════════════════════════════ -->
+      <section class="page" data-page="componentes">
+
+        <!-- Listado de los 11 componentes (se oculta al abrir uno) -->
+        <div id="comp-grid-panel">
+          <div class="page-head">
+            <span class="page-tag">Componentes</span>
+            <h1 class="page-title">Diseñando cada parte del sistema</h1>
+            <p class="page-lead">Selecciona un componente para ver su explicación detallada, ejemplos y errores
+              frecuentes. El color indica a qué módulo de la arquitectura pertenece.</p>
+          </div>
+
+          <div class="comp-legend">
+            <span class="legend-dot" data-mod="seg">Seguridad</span>
+            <span class="legend-dot" data-mod="ger">ON-LINE · Gerencial</span>
+            <span class="legend-dot" data-mod="ope">ON-LINE · Operativo</span>
+            <span class="legend-dot" data-mod="apl">BATCH · Aplicativo</span>
+            <span class="legend-dot" data-mod="tec">BATCH · Técnico</span>
+          </div>
+
+          <div class="comp-grid">
+            <button class="comp-card" data-mod="seg" data-comp="login" type="button"><span
+                class="comp-icon">🔐</span><span class="comp-name">Control de Acceso</span><span
+                class="comp-mod">Seguridad</span><span class="comp-num">01</span></button>
+            <button class="comp-card" data-mod="seg" data-comp="perfiles" type="button"><span
+                class="comp-icon">👥</span><span class="comp-name">Perfiles y Permisos</span><span
+                class="comp-mod">Seguridad</span><span class="comp-num">02</span></button>
+            <button class="comp-card" data-mod="ger" data-comp="catalogos" type="button"><span
+                class="comp-icon">📋</span><span class="comp-name">Catálogos</span><span class="comp-mod">ON-LINE ·
+                Gerencial</span><span class="comp-num">03</span></button>
+            <button class="comp-card" data-mod="ope" data-comp="proceso" type="button"><span
+                class="comp-icon">⚙️</span><span class="comp-name">Proceso Central</span><span class="comp-mod">ON-LINE
+                · Operativo</span><span class="comp-num">04</span></button>
+            <button class="comp-card" data-mod="ger" data-comp="consultas" type="button"><span
+                class="comp-icon">🔍</span><span class="comp-name">Consultas</span><span class="comp-mod">ON-LINE ·
+                Gerencial</span><span class="comp-num">05</span></button>
+            <button class="comp-card" data-mod="ger" data-comp="kpis" type="button"><span
+                class="comp-icon">📊</span><span class="comp-name">KPIs</span><span class="comp-mod">ON-LINE ·
+                Gerencial</span><span class="comp-num">06</span></button>
+            <button class="comp-card" data-mod="ger" data-comp="graficas" type="button"><span
+                class="comp-icon">📈</span><span class="comp-name">Gráficas</span><span class="comp-mod">ON-LINE ·
+                Gerencial</span><span class="comp-num">07</span></button>
+            <button class="comp-card" data-mod="ope" data-comp="reportes" type="button"><span
+                class="comp-icon">📄</span><span class="comp-name">Reportes</span><span class="comp-mod">ON-LINE ·
+                Operativo</span><span class="comp-num">08</span></button>
+            <button class="comp-card" data-mod="ger" data-comp="protocolos" type="button"><span
+                class="comp-icon">📜</span><span class="comp-name">Protocolos</span><span class="comp-mod">ON-LINE ·
+                Gerencial + BATCH</span><span class="comp-num">09</span></button>
+            <button class="comp-card" data-mod="apl" data-comp="batch" type="button"><span
+                class="comp-icon">🤖</span><span class="comp-name">Módulo BATCH</span><span class="comp-mod">BATCH ·
+                Aplicativo</span><span class="comp-num">10</span></button>
+            <button class="comp-card" data-mod="tec" data-comp="backup" type="button"><span
+                class="comp-icon">💾</span><span class="comp-name">Backup &amp; Mant.</span><span class="comp-mod">BATCH
+                · Técnico</span><span class="comp-num">11</span></button>
+          </div>
+        </div>
+
+        <!-- ── 01 · CONTROL DE ACCESO ─────────────────────────────── -->
+        <article class="comp-detail" id="detail-login" data-mod="seg">
+          <div class="comp-hero" data-num="01">
+            <span class="comp-hero-icon">🔐</span>
+            <div>
+              <h2>Control de Acceso — Pantalla de Ingreso</h2>
+              <p>Primera pantalla — controla QUIÉN puede ingresar</p>
+              <span class="mod-chip">🛡️ Seguridad</span>
+            </div>
+          </div>
+          <div class="comp-body">
+            <div class="must-have">
               <h4>✅ Debe contener</h4>
               <ul>
                 <li>URL visible y coherente con el sistema</li>
@@ -416,227 +496,304 @@
                 <li>Al menos UN método adicional de autenticación (QR, reconocimiento facial, huella, PIN, etc.)</li>
               </ul>
             </div>
-            <div class="reveal-container">
+
+            <div class="callout callout-info">
+              <div class="callout-icon">🎓</div>
+              <div class="callout-body">
+                <h4>Criterio del profesor</h4>
+                <p>Exige métodos alternativos de acceso (QR, huella, reconocimiento facial…). Hoy muchas empresas y
+                  sitios
+                  web los usan, así que lo ideal es que sean cada vez más restrictivos y den más seguridad que solo
+                  usuario y contraseña.</p>
+              </div>
+            </div>
+
+            <div class="reveal">
               <div class="reveal-bad">
-                <div class="reveal-bad-head">❌ ASÍ NO</div>
-                <div class="reveal-bad-body">
-                  <img src="imagenes/login_contabilidad.jpg" alt="Contabilidad sin login" class="img-real">
-                  <p class="img-caption">Sistema de Contabilidad — diseño externo sin control de acceso visible</p>
+                <div class="reveal-head">❌ ASÍ NO</div>
+                <div class="reveal-body">
+                  <img src="imagenes/login_contabilidad.jpg" alt="Login de Contabilidad incompleto" class="img-real">
+                  <p class="img-caption">Sistema de Contabilidad — tiene usuario y contraseña, pero sin URL, sin nombre
+                    del sistema y sin método adicional de autenticación</p>
                 </div>
               </div>
-              <button class="btn-reveal" onclick="reveal(this)">▶ Revelar versión correcta</button>
+              <button class="btn-reveal" data-reveal type="button">▶ Revelar versión correcta</button>
               <div class="reveal-good">
-                <div class="reveal-good-head">✅ ASÍ SÍ</div>
-                <div class="reveal-good-body">
-                  <img src="imagenes/login_cobranza.png" alt="Cobranzas Login" class="img-real">
-                  <p class="img-caption">PC1 Cobranzas — Login con URL, DNI, contraseña, código QR y reconocimiento
-                    facial</p>
-                </div>
-              </div>
-            </div>
-            <div class="sys-tabs">
-              <div class="sys-tabs-nav"></div>
-              <div class="sys-tab-content">
-                <div class="sys-tab-pane" data-sys="cob">
-                  <span class="sys-label cob">🔵 Cobranzas</span>
-                  <p>DNI + contraseña. Métodos adicionales: escaneo de QR y reconocimiento facial.</p>
-                </div>
-                <div class="sys-tab-pane" data-sys="ven">
-                  <span class="sys-label ven">🟢 Ventas</span>
-                  <p>Usuario + contraseña con verificación adicional por PIN o huella digital.</p>
-                </div>
-                <div class="sys-tab-pane" data-sys="tra">
-                  <span class="sys-label tra">🟠 Transporte</span>
-                  <p>Usuario + contraseña con opción de registro. Diferencia entre cliente, operario y administrador.
-                  </p>
-                </div>
-                <div class="sys-tab-pane" data-sys="con">
-                  <span class="sys-label con">🔴 Contabilidad</span>
-                  <p>Usuario + contraseña con verificación adicional por PIN o huella digital.</p>
-                </div>
-              </div>
-            </div>
-            <div class="question-box">
-              <div class="q-icon">🎤</div>
-              <p>El método adicional no es decorativo. El profesor preguntará por qué lo eligieron y <strong>cómo
-                  funciona en su sistema</strong>.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── DETALLE: PERFILES ─────────────────────────────────────── -->
-      <div class="comp-detail" id="detail-perfiles">
-        <button class="btn-back" onclick="backToCompGrid()">← Volver al listado</button>
-        <div class="comp-block">
-          <div class="comp-block-head">
-            <h2>👥 Perfiles y Permisos</h2>
-            <div class="comp-sub">Una vez dentro, el sistema controla QUÉ puede hacer cada usuario</div>
-          </div>
-          <div class="comp-block-body">
-            <div class="compare-grid">
-              <div>
-                <div class="requires-box">
-                  <h4>✅ Debe mostrar</h4>
-                  <ul>
-                    <li>Lista de perfiles o roles del sistema</li>
-                    <li>Módulos accesibles por cada perfil</li>
-                    <li>Opción de agregar, modificar o eliminar perfiles</li>
-                    <li>Vista de detalle de permisos por perfil</li>
-                  </ul>
-                </div>
-              </div>
-              <div>
-                <div class="error-box">
-                  <h4>⚠️ Error común</h4>
-                  <ul>
-                    <li>Login y perfiles son dos pantallas distintas</li>
-                    <li>Diseñar solo el login es un error frecuente</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <!-- Bloque CUIDADO -->
-            <div
-              style="background:#FFF0F0;border:2px solid var(--red);border-radius:var(--radius);padding:1rem 1.2rem;margin:1rem 0">
-              <h4 style="color:var(--red);font-size:0.95rem;font-weight:700;margin-bottom:8px">🚨🚨 Cuidado 🚨🚨</h4>
-              <p style="font-size:0.9rem;color:var(--gray-800);line-height:1.6">
-                No te olvides de los parámetros internos a los que cada perfil tiene acceso.<br>
-                Estos varían respecto al sistema que elegiste.<br>
-                Siempre debes colocar ejemplos de cómo serían los controles de acceso.
-              </p>
-            </div>
-
-            <h4 class="bold mt-2 mb-1" style="font-size:0.95rem;color:var(--navy)">Ejemplos — Sistema de Cobranzas:</h4>
-            <div style="margin-bottom:1rem">
-              <div class="img-item">
-                <img src="imagenes/control_accesos.png" alt="Control de Accesos" class="img-real">
-                <p class="img-caption">PC1 Cobranzas — Perfiles con módulos y accesos definidos por cada rol: Gerente,
-                  Operario, Auditoría, etc.</p>
-              </div>
-            </div>
-
-            <!-- Galería de ejemplos de perfiles por almacenamiento -->
-            <h4 class="bold mt-2 mb-1" style="font-size:0.95rem;color:var(--navy)">Ejemplos — Sistema de Almacenamiento:
-            </h4>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
-              <div>
-                <img src="imagenes/perfil_acceso_almacenamiento_1.png" alt="Perfil Almacenamiento 1" class="img-real">
-                <p class="img-caption">Perfil: Gerente — accesos asignados</p>
-              </div>
-              <div>
-                <img src="imagenes/perfil_acceso_almacenamiento_2.png" alt="Perfil Almacenamiento 2" class="img-real">
-                <p class="img-caption">Perfil: Operario — accesos asignados</p>
-              </div>
-              <div>
-                <img src="imagenes/perfil_acceso_almacenamiento_3.png" alt="Perfil Almacenamiento 3" class="img-real">
-                <p class="img-caption">Perfil: Auditor — accesos asignados</p>
-              </div>
-              <div>
-                <img src="imagenes/perfil_acceso_almacenamiento_4.png" alt="Perfil Almacenamiento 4" class="img-real">
-                <p class="img-caption">Perfil: Consultor — accesos asignados</p>
-              </div>
-            </div>
-
-            <div class="question-box">
-              <div class="q-icon">🎤</div>
-              <p>"Explícame qué puede hacer el perfil [X] y por qué tiene acceso a esos módulos."</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- ── DETALLE: CATÁLOGOS ────────────────────────────────────── -->
-      <div class="comp-detail" id="detail-catalogos">
-        <button class="btn-back" onclick="backToCompGrid()">← Volver al listado</button>
-        <div class="comp-block">
-          <div class="comp-block-head">
-            <h2>📋 Catálogos — Mantenimiento de parámetros</h2>
-            <div class="comp-sub">Los datos base que el sistema necesita para operar</div>
-          </div>
-          <div class="comp-block-body">
-            <p class="text-muted italic mb-2">Sin catálogos, el proceso principal no puede funcionar.</p>
-            <div class="compare-grid">
-              <div>
-                <div class="requires-box">
-                  <h4>✅ Un catálogo siempre permite:</h4>
-                  <ul>
-                    <li>Ver la lista de registros existentes</li>
-                    <li>Agregar un nuevo registro</li>
-                    <li>Modificar un registro existente</li>
-                    <li>Eliminar un registro</li>
-                    <li>Buscar o filtrar registros</li>
-                    <li>Ver el detalle de un registro seleccionado</li>
-                  </ul>
-                </div>
-              </div>
-              <div>
-                <div class="alert alert-navy" style="margin:0;height:100%">
-                  <div class="alert-body">
-                    <h4>💡 ¿Cómo identificar mis catálogos?</h4>
-                    <p>Pregúntate: ¿qué datos necesito tener cargados <strong>ANTES</strong> de que el sistema empiece a
-                      operar?<br><br>Esos datos son tus catálogos.</p>
+                <div class="reveal-head">✅ ASÍ SÍ</div>
+                <div class="reveal-body">
+                  <!-- Pines: tocar un número resalta su explicación (y al revés). Posición en % de la imagen -->
+                  <div class="pin-figure">
+                    <div class="pin-head">📍 Toca los números <small>— cada uno explica un elemento de la
+                        pantalla</small></div>
+                    <div class="pin-stage">
+                      <img src="imagenes/login_cobranza.png" alt="Cobranzas Login" class="img-real">
+                      <button class="pin" data-pin="1" style="left:92.9%;top:13.2%" type="button"
+                        aria-label="Pin 1">1</button>
+                      <button class="pin" data-pin="2" style="left:40.8%;top:26.6%" type="button"
+                        aria-label="Pin 2">2</button>
+                      <button class="pin" data-pin="3" style="left:35.1%;top:76.1%" type="button"
+                        aria-label="Pin 3">3</button>
+                      <button class="pin" data-pin="4" style="left:33.8%;top:87.4%" type="button"
+                        aria-label="Pin 4">4</button>
+                      <button class="pin" data-pin="5" style="left:74.1%;top:54.4%" type="button"
+                        aria-label="Pin 5">5</button>
+                      <button class="pin" data-pin="6" style="left:60.4%;top:78.6%" type="button"
+                        aria-label="Pin 6">6</button>
+                    </div>
+                    <ul class="pin-list">
+                      <li class="pin-item" data-pin="1" tabindex="0"><b>1</b><span>URL visible y coherente con el
+                          sistema.</span></li>
+                      <li class="pin-item" data-pin="2" tabindex="0"><b>2</b><span>Título de la pantalla de
+                          ingreso.</span></li>
+                      <li class="pin-item" data-pin="3" tabindex="0"><b>3</b><span>Campos de DNI y contraseña.</span>
+                      </li>
+                      <li class="pin-item" data-pin="4" tabindex="0"><b>4</b><span>Botón de ingreso.</span></li>
+                      <li class="pin-item" data-pin="5" tabindex="0"><b>5</b><span>Método adicional: ingreso escaneando
+                          un código QR.</span></li>
+                      <li class="pin-item" data-pin="6" tabindex="0"><b>6</b><span>Método adicional: ingreso mediante
+                          registro facial.</span></li>
+                    </ul>
+                    <p class="img-caption">PC1 Cobranzas — Login con URL, DNI, contraseña, código QR y reconocimiento
+                      facial</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="reveal-container mt-2">
+
+            <div class="sys-tabs">
+              <div class="sys-tabs-nav"></div>
+              <div class="sys-tab-content">
+                <div class="sys-tab-pane" data-sys="cob">
+                  <span class="sys-label">🔵 Cobranzas</span>
+                  <p>DNI + contraseña. Métodos adicionales: escaneo de QR y reconocimiento facial.</p>
+                </div>
+                <div class="sys-tab-pane" data-sys="ven">
+                  <span class="sys-label">🟢 Ventas</span>
+                  <p>Usuario + contraseña con verificación adicional por PIN o huella digital.</p>
+                </div>
+                <div class="sys-tab-pane" data-sys="tra">
+                  <span class="sys-label">🟠 Transporte</span>
+                  <p>Usuario + contraseña con opción de registro. Diferencia entre cliente, operario y administrador.
+                  </p>
+                </div>
+                <div class="sys-tab-pane" data-sys="con">
+                  <span class="sys-label">🔴 Contabilidad</span>
+                  <p>Usuario + contraseña con verificación adicional por PIN o huella digital.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="prof-question">
+              <div class="q-icon">🎤</div>
+              <div>
+                <small>Pregunta del profesor</small>
+                <p>El método adicional no es decorativo. El profesor preguntará por qué lo eligieron y <strong>cómo
+                    funciona en su sistema</strong>.</p>
+              </div>
+            </div>
+          </div>
+          <footer class="comp-pager"></footer>
+        </article>
+
+        <!-- ── 02 · PERFILES Y PERMISOS ───────────────────────────── -->
+        <article class="comp-detail" id="detail-perfiles" data-mod="seg">
+          <div class="comp-hero" data-num="02">
+            <span class="comp-hero-icon">👥</span>
+            <div>
+              <h2>Perfiles y Permisos</h2>
+              <p>Una vez dentro, el sistema controla QUÉ puede hacer cada usuario</p>
+              <span class="mod-chip">🛡️ Seguridad</span>
+            </div>
+          </div>
+          <div class="comp-body">
+            <div class="compare-grid">
+              <div class="must-have">
+                <h4>✅ Debe mostrar</h4>
+                <ul>
+                  <li>Lista de perfiles o roles del sistema</li>
+                  <li>Módulos accesibles por cada perfil</li>
+                  <li>Opción de agregar, modificar o eliminar perfiles</li>
+                  <li>Vista de detalle de permisos por perfil</li>
+                </ul>
+              </div>
+              <div class="common-error">
+                <h4>⚠️ Error común</h4>
+                <ul>
+                  <li>Login y perfiles son dos pantallas distintas</li>
+                  <li>Diseñar solo el login es un error frecuente</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="caution">
+              <h4>🚨🚨 Cuidado 🚨🚨</h4>
+              <p>No te olvides de los parámetros internos a los que cada perfil tiene acceso.<br>
+                Estos varían respecto al sistema que elegiste.<br>
+                Siempre debes colocar ejemplos de cómo serían los controles de acceso.</p>
+            </div>
+
+            <h3 class="subtitle">Ejemplos — Sistema de Cobranzas:</h3>
+            <figure class="img-item">
+              <img src="imagenes/control_accesos.png" alt="Control de Accesos" class="img-real">
+              <figcaption class="img-caption">PC1 Cobranzas — Perfiles con módulos y accesos definidos por cada rol:
+                Gerente, Operario, Auditoría, etc.</figcaption>
+            </figure>
+
+            <h3 class="subtitle">Ejemplos — Sistema de Almacenamiento:</h3>
+            <p class="muted" style="font-size:.88rem">Mira cómo se conectan las pantallas: se elige un tipo de usuario,
+              se ven sus accesos, se pueden editar y, antes de eliminar, el sistema pide confirmación.</p>
+
+            <div class="pin-figure">
+              <div class="pin-head">📍 Anatomía de “Editar Accesos” <small>— toca los números</small></div>
+              <div class="pin-stage">
+                <img src="imagenes/perfil_acceso_almacenamiento_1.png" alt="Editar accesos del perfil Gerente"
+                  class="img-real">
+                <button class="pin" data-pin="1" style="left:76.9%;top:34.9%" type="button"
+                  aria-label="Pin 1">1</button>
+                <button class="pin" data-pin="2" style="left:40.3%;top:43.9%" type="button"
+                  aria-label="Pin 2">2</button>
+                <button class="pin" data-pin="3" style="left:89.5%;top:43.9%" type="button"
+                  aria-label="Pin 3">3</button>
+                <button class="pin" data-pin="4" style="left:96.2%;top:24.3%" type="button"
+                  aria-label="Pin 4">4</button>
+                <button class="pin" data-pin="5" style="left:20.6%;top:22.2%" type="button"
+                  aria-label="Pin 5">5</button>
+              </div>
+              <ul class="pin-list">
+                <li class="pin-item" data-pin="1" tabindex="0"><b>1</b><span>Nombre del perfil que se está editando
+                    (aquí: Gerente).</span></li>
+                <li class="pin-item" data-pin="2" tabindex="0"><b>2</b><span>Lista de accesos disponibles en el
+                    sistema.</span></li>
+                <li class="pin-item" data-pin="3" tabindex="0"><b>3</b><span>Accesos que ya tiene asignados este perfil:
+                    catálogos, parámetros, consultas y estadísticas.</span></li>
+                <li class="pin-item" data-pin="4" tabindex="0"><b>4</b><span>Guardar: confirma los cambios hechos a los
+                    accesos.</span></li>
+                <li class="pin-item" data-pin="5" tabindex="0"><b>5</b><span>Volver a la pantalla anterior (lista de
+                    tipos de usuario).</span></li>
+              </ul>
+              <p class="img-caption">Editar accesos del perfil «Gerente»: accesos disponibles y accesos asignados</p>
+            </div>
+
+            <div class="img-grid cols-3">
+              <figure class="img-item">
+                <img src="imagenes/perfil_acceso_almacenamiento_2.png" alt="Perfil Cliente seleccionado"
+                  class="img-real">
+                <figcaption class="img-caption">Gestión de perfiles — «Cliente» seleccionado: sus accesos asignados son
+                  Data-Entry y Reportes</figcaption>
+              </figure>
+              <figure class="img-item">
+                <img src="imagenes/perfil_acceso_almacenamiento_3.png" alt="Perfil Gerente seleccionado"
+                  class="img-real">
+                <figcaption class="img-caption">Gestión de perfiles — «Gerente» seleccionado: catálogos, parámetros,
+                  consultas y estadísticas</figcaption>
+              </figure>
+              <figure class="img-item">
+                <img src="imagenes/perfil_acceso_almacenamiento_4.png"
+                  alt="Confirmación para eliminar un tipo de usuario" class="img-real">
+                <figcaption class="img-caption">Confirmación antes de eliminar un tipo de usuario</figcaption>
+              </figure>
+            </div>
+
+            <div class="prof-question">
+              <div class="q-icon">🎤</div>
+              <div>
+                <small>Pregunta del profesor</small>
+                <p>“Explícame qué puede hacer el perfil [X] y por qué tiene acceso a esos módulos.”</p>
+              </div>
+            </div>
+          </div>
+          <footer class="comp-pager"></footer>
+        </article>
+
+        <!-- ── 03 · CATÁLOGOS ─────────────────────────────────────── -->
+        <article class="comp-detail" id="detail-catalogos" data-mod="ger">
+          <div class="comp-hero" data-num="03">
+            <span class="comp-hero-icon">📋</span>
+            <div>
+              <h2>Catálogos — Mantenimiento de parámetros</h2>
+              <p>Los datos base que el sistema necesita para operar</p>
+              <span class="mod-chip">🖥️ ON-LINE › Gerencial</span>
+            </div>
+          </div>
+          <div class="comp-body">
+            <p class="muted italic">Sin catálogos, el proceso principal no puede funcionar.</p>
+            <div class="compare-grid">
+              <div class="must-have">
+                <h4>✅ Un catálogo siempre permite:</h4>
+                <ul>
+                  <li>Ver la lista de registros existentes</li>
+                  <li>Agregar un nuevo registro</li>
+                  <li>Modificar un registro existente</li>
+                  <li>Eliminar un registro</li>
+                  <li>Buscar o filtrar registros</li>
+                  <li>Ver el detalle de un registro seleccionado</li>
+                </ul>
+              </div>
+              <div class="info-box">
+                <h4>💡 ¿Cómo identificar mis catálogos?</h4>
+                <p style="font-size:.9rem">Pregúntate: ¿qué datos necesito tener cargados <strong>ANTES</strong> de que
+                  el sistema empiece a operar?<br><br>Esos datos son tus catálogos.</p>
+              </div>
+            </div>
+
+            <div class="reveal">
               <div class="reveal-bad">
-                <div class="reveal-bad-head">❌ ASÍ NO — Solo lista sin detalle</div>
-                <div class="reveal-bad-body">
+                <div class="reveal-head">❌ ASÍ NO — Solo lista sin detalle</div>
+                <div class="reveal-body">
                   <img src="imagenes/catalogo_transporte.png" alt="Catálogo sin detalle" class="img-real">
                   <p class="img-caption">Sistema Transporte — catálogos sin vista de detalle ni estados de edición</p>
                 </div>
               </div>
-              <button class="btn-reveal" onclick="reveal(this)">▶ Revelar versión correcta</button>
+              <button class="btn-reveal" data-reveal type="button">▶ Revelar versión correcta</button>
               <div class="reveal-good">
-                <div class="reveal-good-head">✅ ASÍ SÍ — Lista + detalle + CRUD</div>
-                <div class="reveal-good-body">
+                <div class="reveal-head">✅ ASÍ SÍ — Lista + detalle + CRUD</div>
+                <div class="reveal-body">
                   <img src="imagenes/catalogo_cobranza.png" alt="Catálogo Cobranzas" class="img-real">
                   <p class="img-caption">PC1 Cobranzas — Catálogo de Servicios con lista, detalle, campos completos y
                     opciones CRUD visibles</p>
                 </div>
               </div>
             </div>
-            <h4 class="bold mt-2 mb-1" style="font-size:0.95rem;color:var(--navy)">Un catálogo bien diseñado muestra sus
-              tres estados:</h4>
-            <div class="three-states">
-              <div class="state-card" style="background:var(--navy-lt);border-color:var(--navy-mid)">
-                <h4 style="color:var(--navy)">Estado vacío</h4>
+
+            <h3 class="subtitle">Un catálogo bien diseñado muestra sus tres estados:</h3>
+            <div class="state-grid">
+              <div class="state-card">
+                <h4>Estado vacío</h4>
                 <p>Formulario listo para agregar</p>
               </div>
-              <div class="state-card" style="background:var(--teal-lt);border-color:var(--teal)">
-                <h4 style="color:var(--teal)">Estado con datos</h4>
+              <div class="state-card s2">
+                <h4>Estado con datos</h4>
                 <p>Lista de registros existentes</p>
               </div>
-              <div class="state-card" style="background:var(--orange-lt);border-color:var(--orange)">
-                <h4 style="color:var(--orange)">Estado de edición</h4>
+              <div class="state-card s3">
+                <h4>Estado de edición</h4>
                 <p>Campos pre-cargados para modificar</p>
               </div>
             </div>
-            <div class="sys-tabs mt-2">
+
+            <div class="sys-tabs">
               <div class="sys-tabs-nav"></div>
               <div class="sys-tab-content">
-                <div class="sys-tab-pane" data-sys="cob"><span class="sys-label cob">🔵 Cobranzas</span>
+                <div class="sys-tab-pane" data-sys="cob"><span class="sys-label">🔵 Cobranzas</span>
                   <p>Catálogos: <strong>Servicios</strong> (tipos de cobranza con rangos y canales),
                     <strong>Canales</strong> (SMS, WhatsApp, correo, llamadas, carta notarial),
                     <strong>Operarios</strong> (autómatas), <strong>Plantillas</strong> (mensajes por tipo de cobranza).
                   </p>
                 </div>
-                <div class="sys-tab-pane" data-sys="ven"><span class="sys-label ven">🟢 Ventas</span>
+                <div class="sys-tab-pane" data-sys="ven"><span class="sys-label">🟢 Ventas</span>
                   <p>Catálogos: <strong>Clientes</strong> (segmentados por tipo), <strong>Productos</strong> (con
-                    precio, stock, descripción e imagen), <strong>Estrategias</strong> (vinculadas a gestos y tipos de
-                    cliente), <strong>Políticas</strong> (descuentos, garantías, devoluciones).</p>
+                    precio,
+                    stock, descripción e imagen), <strong>Estrategias</strong> (vinculadas a gestos y tipos de cliente),
+                    <strong>Políticas</strong> (descuentos, garantías, devoluciones).
+                  </p>
                 </div>
-                <div class="sys-tab-pane" data-sys="tra"><span class="sys-label tra">🟠 Transporte</span>
+                <div class="sys-tab-pane" data-sys="tra"><span class="sys-label">🟠 Transporte</span>
                   <p>Catálogos: <strong>Vehículos</strong> (tipo, capacidad, disponibilidad), <strong>Bienes</strong>
                     (tipo de carga), <strong>Contenedores</strong>, <strong>Horarios</strong>,
                     <strong>Operarios</strong> (conductores y ayudantes).
                   </p>
                 </div>
-                <div class="sys-tab-pane" data-sys="con"><span class="sys-label con">🔴 Contabilidad</span>
+                <div class="sys-tab-pane" data-sys="con"><span class="sys-label">🔴 Contabilidad</span>
                   <p>Catálogos: <strong>Plan de cuentas</strong>, <strong>Centros de costo</strong>,
                     <strong>Comprobantes</strong> (tipos de documento), <strong>Monedas</strong> y tipos de cambio.
                   </p>
@@ -644,53 +801,56 @@
               </div>
             </div>
 
-            <h4 class="bold mt-2 mb-1" style="font-size:0.95rem;color:var(--navy)">En el Catálogo darle importancia a
-              cada aspecto de la interfaz y experiencia de usuario (UI/UX)</h4>
-            <div class="img-grid-uniform" style="margin-bottom:1rem">
-              <div class="img-item">
+            <h3 class="subtitle">En el Catálogo darle importancia a cada aspecto de la interfaz y experiencia de usuario
+              (UI/UX)</h3>
+            <div class="img-grid">
+              <figure class="img-item">
                 <img src="imagenes/leve.png" alt="UI/UX Leve" class="img-real">
-                <p class="img-caption">Detalle de interfaz — nivel leve</p>
-              </div>
-              <div class="img-item">
+                <figcaption class="img-caption">Detalle de interfaz — nivel leve</figcaption>
+              </figure>
+              <figure class="img-item">
                 <img src="imagenes/estrategias_cobranza.png" alt="Estrategias Cobranza" class="img-real">
-                <p class="img-caption">Catálogo — Estrategias de Cobranza</p>
-              </div>
-              <div class="img-item">
+                <figcaption class="img-caption">Catálogo — Estrategias de Cobranza</figcaption>
+              </figure>
+              <figure class="img-item">
                 <img src="imagenes/disponibilidad_cobranza.png" alt="Disponibilidad Cobranza" class="img-real">
-                <p class="img-caption">Catálogo — Disponibilidad de Cobranza</p>
-              </div>
-              <div class="img-item">
+                <figcaption class="img-caption">Catálogo — Disponibilidad de Cobranza</figcaption>
+              </figure>
+              <figure class="img-item">
                 <img src="imagenes/acuerdo_compromiso.png" alt="Acuerdo Compromiso" class="img-real">
-                <p class="img-caption">Catálogo — Acuerdo y Compromiso</p>
-              </div>
+                <figcaption class="img-caption">Catálogo — Acuerdo y Compromiso</figcaption>
+              </figure>
             </div>
-            <div class="question-box">
-              <div class="q-icon">🎤</div>
-              <p>"Explícame cómo funciona este catálogo. ¿Qué pasa si agrego un nuevo registro?"</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- ── DETALLE: PROCESO CENTRAL ──────────────────────────────── -->
-      <div class="comp-detail" id="detail-proceso">
-        <button class="btn-back" onclick="backToCompGrid()">← Volver al listado</button>
-        <div class="comp-block">
-          <div class="comp-block-head">
-            <h2>⚙️ El Proceso Central — El corazón del sistema</h2>
-            <div class="comp-sub">El proceso principal para el que fue creado el sistema</div>
-          </div>
-          <div class="comp-block-body">
-            <div class="alert alert-navy mb-2">
-              <div class="alert-icon">💡</div>
-              <div class="alert-body">
-                <h4>¿Cómo identificar el proceso central?</h4>
-                <p>Pregúntate: <strong>¿para qué existe este sistema?</strong><br>
-                  Cobranzas → Reservar y ejecutar cobranzas &nbsp;·&nbsp; Ventas → Registrar y cerrar una venta
-                  &nbsp;·&nbsp; Transporte → Cotizar y generar orden de pago</p>
+            <div class="prof-question">
+              <div class="q-icon">🎤</div>
+              <div>
+                <small>Pregunta del profesor</small>
+                <p>“Explícame cómo funciona este catálogo. ¿Qué pasa si agrego un nuevo registro?”</p>
               </div>
             </div>
-            <div class="requires-box">
+          </div>
+          <footer class="comp-pager"></footer>
+        </article>
+
+        <!-- ── 04 · PROCESO CENTRAL ───────────────────────────────── -->
+        <article class="comp-detail" id="detail-proceso" data-mod="ope">
+          <div class="comp-hero" data-num="04">
+            <span class="comp-hero-icon">⚙️</span>
+            <div>
+              <h2>El Proceso Central — El corazón del sistema</h2>
+              <p>El proceso principal para el que fue creado el sistema</p>
+              <span class="mod-chip">🖥️ ON-LINE › Operativo</span>
+            </div>
+          </div>
+          <div class="comp-body">
+            <div class="info-box" style="margin-top:0">
+              <h4>💡 ¿Cómo identificar el proceso central?</h4>
+              <p style="font-size:.9rem;margin:0">Pregúntate: <strong>¿para qué existe este sistema?</strong><br>
+                Cobranzas → Reservar y ejecutar cobranzas &nbsp;·&nbsp; Ventas → Registrar y cerrar una venta
+                &nbsp;·&nbsp; Transporte → Cotizar y generar orden de pago</p>
+            </div>
+            <div class="must-have">
               <h4>✅ Debe mostrar</h4>
               <ul>
                 <li>Flujo completo paso a paso</li>
@@ -699,10 +859,12 @@
                 <li>Conexión visible con los catálogos definidos</li>
               </ul>
             </div>
-            <img src="imagenes/estrategias_cobranza.png" alt="Proceso Central Cobranzas" class="img-real mt-2 mb-2">
-            <p class="img-caption">PC1 Cobranzas — Análisis de cartera: selección de estrategia por moroso, tarifas y
-              confirmación</p>
-            <div class="error-box mt-2">
+            <figure class="img-item">
+              <img src="imagenes/estrategias_cobranza.png" alt="Proceso Central Cobranzas" class="img-real">
+              <figcaption class="img-caption">PC1 Cobranzas — Análisis de cartera: selección de estrategia por moroso,
+                tarifas y confirmación</figcaption>
+            </figure>
+            <div class="common-error">
               <h4>⚠️ Errores frecuentes</h4>
               <ul>
                 <li>Mostrar solo la pantalla inicial sin el flujo completo</li>
@@ -710,85 +872,88 @@
                 <li>Proceso desconectado de los catálogos</li>
               </ul>
             </div>
-            <div class="question-box">
+            <div class="prof-question">
               <div class="q-icon">🎤</div>
-              <p>"Explícame paso a paso cómo funciona el proceso principal de su sistema."</p>
+              <div>
+                <small>Pregunta del profesor</small>
+                <p>“Explícame paso a paso cómo funciona el proceso principal de su sistema.”</p>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+          <footer class="comp-pager"></footer>
+        </article>
 
-      <!-- ── DETALLE: CONSULTAS ────────────────────────────────────── -->
-      <div class="comp-detail" id="detail-consultas">
-        <button class="btn-back" onclick="backToCompGrid()">← Volver al listado</button>
-        <div class="comp-block">
-          <div class="comp-block-head">
-            <h2>🔍 Consultas — Información cuando el usuario la necesita</h2>
-            <div class="comp-sub">Buscar y visualizar información sin modificar datos</div>
+        <!-- ── 05 · CONSULTAS ─────────────────────────────────────── -->
+        <article class="comp-detail" id="detail-consultas" data-mod="ger">
+          <div class="comp-hero" data-num="05">
+            <span class="comp-hero-icon">🔍</span>
+            <div>
+              <h2>Consultas — Información cuando el usuario la necesita</h2>
+              <p>Buscar y visualizar información sin modificar datos</p>
+              <span class="mod-chip">🖥️ ON-LINE › Gerencial</span>
+            </div>
           </div>
-          <div class="comp-block-body">
-            <p class="text-muted italic mb-2">Pantallas que permiten buscar, filtrar y visualizar información del
-              sistema sin modificar ningún dato.</p>
+          <div class="comp-body">
+            <p class="muted italic">Pantallas que permiten buscar, filtrar y visualizar información del sistema sin
+              modificar ningún dato.</p>
             <div class="compare-grid">
-              <div>
-                <div class="requires-box">
-                  <h4>✅ Una consulta bien diseñada tiene:</h4>
-                  <ul>
-                    <li>Filtros de búsqueda claros (fecha, estado, etc.)</li>
-                    <li>Lista de resultados con datos representativos</li>
-                    <li>Vista de detalle al seleccionar un registro</li>
-                    <li>Opciones de ordenamiento o paginación</li>
-                  </ul>
-                </div>
+              <div class="must-have">
+                <h4>✅ Una consulta bien diseñada tiene:</h4>
+                <ul>
+                  <li>Filtros de búsqueda claros (fecha, estado, etc.)</li>
+                  <li>Lista de resultados con datos representativos</li>
+                  <li>Vista de detalle al seleccionar un registro</li>
+                  <li>Opciones de ordenamiento o paginación</li>
+                </ul>
               </div>
-              <div>
-                <div class="alert alert-navy" style="margin:0">
-                  <div class="alert-body">
-                    <h4>💡 Consulta vs. Reporte</h4>
-                    <p><strong>CONSULTA</strong> → El usuario explora datos en pantalla con filtros propios. No se
-                      descarga.<br><br>
-                      <strong>REPORTE</strong> → El sistema genera un documento consolidado. Se puede imprimir o
-                      descargar.
-                    </p>
-                  </div>
-                </div>
+              <div class="info-box">
+                <h4>💡 Consulta vs. Reporte</h4>
+                <p style="font-size:.9rem"><strong>CONSULTA</strong> → El usuario explora datos en pantalla con filtros
+                  propios. No se descarga.<br><br>
+                  <strong>REPORTE</strong> → El sistema genera un documento consolidado. Se puede imprimir o descargar.
+                </p>
               </div>
             </div>
-            <div class="sys-tabs mt-2">
+
+            <div class="sys-tabs">
               <div class="sys-tabs-nav"></div>
               <div class="sys-tab-content">
-                <div class="sys-tab-pane" data-sys="cob"><span class="sys-label cob">🔵 Cobranzas</span>
+                <div class="sys-tab-pane" data-sys="cob"><span class="sys-label">🔵 Cobranzas</span>
                   <p>Consultas: <strong>Sponsors</strong> (información general + detalle), <strong>Morosos</strong>
                     (estado de deuda, mora, historial), <strong>Operadores</strong> (actividad y mensajes enviados).</p>
-                  <div class="img-grid-uniform" style="margin-top:1rem;margin-bottom:0.5rem">
-                    <div class="img-item">
+                  <div class="img-grid">
+                    <figure class="img-item">
                       <img src="imagenes/estado_actual_cobranza.png" alt="Estado Actual Cobranza" class="img-real">
-                      <p class="img-caption">PC1 Cobranzas — Estado actual de cobranza</p>
-                    </div>
-                    <div class="img-item">
+                      <figcaption class="img-caption">PC1 Cobranzas — Estado actual de cobranza</figcaption>
+                    </figure>
+                    <figure class="img-item">
                       <img src="imagenes/detalle_cobranza.png" alt="Detalle Cobranza" class="img-real">
-                      <p class="img-caption">PC1 Cobranzas — Vista de detalle al seleccionar un registro</p>
-                    </div>
-                    <div class="img-item">
+                      <figcaption class="img-caption">PC1 Cobranzas — Vista de detalle al seleccionar un registro
+                      </figcaption>
+                    </figure>
+                    <figure class="img-item">
                       <img src="imagenes/consulta_reclamos_1.png" alt="Consulta Reclamos 1" class="img-real">
-                      <p class="img-caption">PC1 Reclamos — Consulta con filtros y lista de resultados</p>
-                    </div>
-                    <div class="img-item">
+                      <figcaption class="img-caption">PC1 Reclamos — Consulta con filtros y lista de resultados
+                      </figcaption>
+                    </figure>
+                    <figure class="img-item">
                       <img src="imagenes/consulta_reclamos_2.png" alt="Consulta Reclamos 2" class="img-real">
-                      <p class="img-caption">PC1 Reclamos — Vista de detalle del reclamo seleccionado</p>
-                    </div>
+                      <figcaption class="img-caption">PC1 Reclamos — Vista de detalle del reclamo seleccionado
+                      </figcaption>
+                    </figure>
                   </div>
                 </div>
-                <div class="sys-tab-pane" data-sys="ven"><span class="sys-label ven">🟢 Ventas</span>
+                <div class="sys-tab-pane" data-sys="ven"><span class="sys-label">🟢 Ventas</span>
                   <p>Consultas: <strong>Ventas por periodo</strong>, <strong>Ventas por producto</strong>,
                     <strong>Porcentaje de efectividad de estrategia por segmento</strong>.
                   </p>
                 </div>
-                <div class="sys-tab-pane" data-sys="tra"><span class="sys-label tra">🟠 Transporte</span>
+                <div class="sys-tab-pane" data-sys="tra"><span class="sys-label">🟠 Transporte</span>
                   <p>Consultas: <strong>Demanda</strong> (servicios por periodo), <strong>Rentabilidad</strong> (por
-                    ruta o vehículo), <strong>Incidentes</strong> (problemas durante el servicio).</p>
+                    ruta
+                    o vehículo), <strong>Incidentes</strong> (problemas durante el servicio).</p>
                 </div>
-                <div class="sys-tab-pane" data-sys="con"><span class="sys-label con">🔴 Contabilidad</span>
+                <div class="sys-tab-pane" data-sys="con"><span class="sys-label">🔴 Contabilidad</span>
                   <p>Consultas: <strong>Estado de cuentas</strong>, <strong>Movimientos por período</strong>,
                     <strong>Balance general</strong>, <strong>Consulta por comprobante</strong>.
                   </p>
@@ -796,77 +961,118 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+          <footer class="comp-pager"></footer>
+        </article>
 
-    <!-- ── DETALLE: KPIs ─────────────────────────────────────────── -->
-    <div class="comp-detail" id="detail-kpis">
-      <button class="btn-back" onclick="backToCompGrid()">← Volver al listado</button>
-      <div class="comp-block">
-        <div class="comp-block-head">
-          <h2>📊 KPIs — Indicadores Clave de Rendimiento</h2>
-          <div class="comp-sub">Un número con contexto, no solo un número</div>
-        </div>
-        <div class="comp-block-body">
-          <p class="text-muted italic mb-2">Un KPI mide qué tan bien está funcionando el sistema respecto a un
-            objetivo definido.</p>
-          <div class="requires-box">
-            <h4>✅ Un KPI bien diseñado incluye:</h4>
-            <ul>
-              <li>Nombre del indicador &nbsp;·&nbsp; Fórmula de cálculo &nbsp;·&nbsp; Unidad de medida (%, soles,
-                días, etc.)</li>
-              <li>Valor actual &nbsp;·&nbsp; Valor meta o esperado &nbsp;·&nbsp; Período de análisis</li>
-              <li>Fuente de los datos &nbsp;·&nbsp; Responsable del análisis</li>
-            </ul>
+        <!-- ── 06 · KPIs ──────────────────────────────────────────── -->
+        <article class="comp-detail" id="detail-kpis" data-mod="ger">
+          <div class="comp-hero" data-num="06">
+            <span class="comp-hero-icon">📊</span>
+            <div>
+              <h2>KPIs — Indicadores Clave de Rendimiento</h2>
+              <p>Un número con contexto, no solo un número</p>
+              <span class="mod-chip">🖥️ ON-LINE › Gerencial</span>
+              <span class="mod-chip">⚙️ se calcula en BATCH</span>
+            </div>
           </div>
-          <h4 class="bold mt-2 mb-1" style="font-size:0.95rem;color:var(--navy)">Ejemplos:</h4>
-          <div class="img-grid-uniform" style="margin-bottom:1rem">
-            <div class="img-item">
-              <img src="imagenes/kpi_almacenamiento.png" alt="KPI Almacenamiento" class="img-real">
+          <div class="comp-body">
+            <p class="muted italic">Un KPI mide qué tan bien está funcionando el sistema respecto a un objetivo
+              definido.</p>
+            <div class="must-have">
+              <h4>✅ Un KPI bien diseñado incluye:</h4>
+              <ul>
+                <li>Nombre del indicador &nbsp;·&nbsp; Fórmula de cálculo &nbsp;·&nbsp; Unidad de medida (%, soles,
+                  días,
+                  etc.)</li>
+                <li>Valor actual &nbsp;·&nbsp; Valor meta o esperado &nbsp;·&nbsp; Período de análisis</li>
+                <li>Fuente de los datos &nbsp;·&nbsp; Responsable del análisis</li>
+              </ul>
+            </div>
+
+            <div class="callout callout-tip">
+              <div class="callout-icon">💡</div>
+              <div class="callout-body">
+                <h4>¿Dónde vive el KPI?</h4>
+                <p>El KPI se <strong>calcula en BATCH</strong> (Estadísticas) y se <strong>visualiza en ON-LINE</strong>
+                  (Consultas › KPIs): en la parte gerencial solo se entra a ver el resultado.</p>
+              </div>
+            </div>
+
+            <h3 class="subtitle">Ejemplos:</h3>
+            <div class="pin-figure">
+              <div class="pin-head">📍 Anatomía de una pantalla de KPI <small>— toca los números</small></div>
+              <div class="pin-stage">
+                <img src="imagenes/kpi_almacenamiento.png" alt="KPI Almacenamiento" class="img-real">
+                <button class="pin" data-pin="1" style="left:95.4%;top:12.1%" type="button"
+                  aria-label="Pin 1">1</button>
+                <button class="pin" data-pin="2" style="left:17.9%;top:21.9%" type="button"
+                  aria-label="Pin 2">2</button>
+                <button class="pin" data-pin="3" style="left:39.2%;top:35%" type="button" aria-label="Pin 3">3</button>
+                <button class="pin" data-pin="4" style="left:36.3%;top:42%" type="button" aria-label="Pin 4">4</button>
+                <button class="pin" data-pin="5" style="left:77.1%;top:48.4%" type="button"
+                  aria-label="Pin 5">5</button>
+              </div>
+              <ul class="pin-list">
+                <li class="pin-item" data-pin="1" tabindex="0"><b>1</b><span>URL coherente con el módulo: on-line /
+                    gerencial / consultas / kpis.</span></li>
+                <li class="pin-item" data-pin="2" tabindex="0"><b>2</b><span>Volver a la pantalla anterior.</span></li>
+                <li class="pin-item" data-pin="3" tabindex="0"><b>3</b><span>Margen de tiempo del análisis (aquí: 1
+                    mes).</span></li>
+                <li class="pin-item" data-pin="4" tabindex="0"><b>4</b><span>Lista de indicadores: el usuario elige qué
+                    demanda analizar (por contenedor, puerta, clientes, horario…).</span></li>
+                <li class="pin-item" data-pin="5" tabindex="0"><b>5</b><span>Gráfico del indicador elegido, con ejes
+                    rotulados (tipo de contenedor y ventas realizadas).</span></li>
+              </ul>
               <p class="img-caption">Sistema de Almacenamiento — KPIs</p>
             </div>
-            <div class="img-item">
-              <img src="imagenes/kpi_cobranza.png" alt="KPI Cobranzas" class="img-real">
-              <p class="img-caption">PC1 Cobranzas — KPIs</p>
-            </div>
-            <div class="img-item">
-              <img src="imagenes/kpi_transporte_1.png" alt="KPI Transporte 1" class="img-real">
-              <p class="img-caption">Sistema de Transporte — KPIs (1)</p>
-            </div>
-            <div class="img-item">
-              <img src="imagenes/kpi_transporte_2.png" alt="KPI Transporte 2" class="img-real">
-              <p class="img-caption">Sistema de Transporte — KPIs (2)</p>
-            </div>
-            <div class="img-item">
-              <img src="imagenes/kpi_reclamos_1.png" alt="KPI Reclamos 1" class="img-real">
-              <p class="img-caption">Sistema de Reclamos — KPIs (1)</p>
-            </div>
-            <div class="img-item">
-              <img src="imagenes/kpi_reclamos_2.png" alt="KPI Reclamos 2" class="img-real">
-              <p class="img-caption">Sistema de Reclamos — KPIs (2)</p>
-            </div>
-          </div>
-          <div class="question-box">
-            <div class="q-icon">🎤</div>
-            <p>"¿Para qué sirve este KPI? ¿Cómo se calcula y quién es responsable de analizarlo?"</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- ── DETALLE: GRÁFICAS ─────────────────────────────────────── -->
-    <div class="comp-detail" id="detail-graficas">
-      <button class="btn-back" onclick="backToCompGrid()">← Volver al listado</button>
-      <div class="comp-block">
-        <div class="comp-block-head">
-          <h2>📈 Gráficas — Visualización de datos</h2>
-          <div class="comp-sub">Tendencias y distribuciones en formato visual</div>
-        </div>
-        <div class="comp-block-body">
-          <div class="compare-grid">
+            <div class="img-grid">
+              <figure class="img-item">
+                <img src="imagenes/kpi_cobranza.png" alt="KPI Cobranzas" class="img-real">
+                <figcaption class="img-caption">PC1 Cobranzas — KPIs</figcaption>
+              </figure>
+              <figure class="img-item">
+                <img src="imagenes/kpi_transporte_1.png" alt="KPI Transporte 1" class="img-real">
+                <figcaption class="img-caption">Sistema de Transporte — KPIs (1)</figcaption>
+              </figure>
+              <figure class="img-item">
+                <img src="imagenes/kpi_transporte_2.png" alt="KPI Transporte 2" class="img-real">
+                <figcaption class="img-caption">Sistema de Transporte — KPIs (2)</figcaption>
+              </figure>
+              <figure class="img-item">
+                <img src="imagenes/kpi_reclamos_1.png" alt="KPI Reclamos 1" class="img-real">
+                <figcaption class="img-caption">Sistema de Reclamos — KPIs (1)</figcaption>
+              </figure>
+              <figure class="img-item">
+                <img src="imagenes/kpi_reclamos_2.png" alt="KPI Reclamos 2" class="img-real">
+                <figcaption class="img-caption">Sistema de Reclamos — KPIs (2)</figcaption>
+              </figure>
+            </div>
+
+            <div class="prof-question">
+              <div class="q-icon">🎤</div>
+              <div>
+                <small>Pregunta del profesor</small>
+                <p>“¿Para qué sirve este KPI? ¿Cómo se calcula y quién es responsable de analizarlo?”</p>
+              </div>
+            </div>
+          </div>
+          <footer class="comp-pager"></footer>
+        </article>
+
+        <!-- ── 07 · GRÁFICAS ──────────────────────────────────────── -->
+        <article class="comp-detail" id="detail-graficas" data-mod="ger">
+          <div class="comp-hero" data-num="07">
+            <span class="comp-hero-icon">📈</span>
             <div>
-              <div class="requires-box">
+              <h2>Gráficas — Visualización de datos</h2>
+              <p>Tendencias y distribuciones en formato visual</p>
+              <span class="mod-chip">🖥️ ON-LINE › Gerencial</span>
+            </div>
+          </div>
+          <div class="comp-body">
+            <div class="compare-grid">
+              <div class="must-have">
                 <h4>✅ Una gráfica bien diseñada tiene:</h4>
                 <ul>
                   <li>Título descriptivo que explica qué muestra</li>
@@ -876,136 +1082,169 @@
                   <li>Datos representativos (no vacía)</li>
                 </ul>
               </div>
+              <div class="info-box">
+                <h4>💡 KPI vs. Gráfica</h4>
+                <p style="font-size:.9rem"><strong>KPI</strong> → Un valor puntual con meta<br><em>“Tasa de respuesta:
+                    72%
+                    (meta 80%)”</em><br><br>
+                  <strong>GRÁFICA</strong> → Una tendencia visual<br><em>“Evolución de la tasa en 6 meses”</em>
+                </p>
+              </div>
             </div>
-            <div>
-              <div class="alert alert-navy" style="margin:0">
-                <div class="alert-body">
-                  <h4>💡 KPI vs. Gráfica</h4>
-                  <p><strong>KPI</strong> → Un valor puntual con meta<br><em>"Tasa de respuesta: 72% (meta
-                      80%)"</em><br><br>
-                    <strong>GRÁFICA</strong> → Una tendencia visual<br><em>"Evolución de la tasa en 6 meses"</em>
+
+            <div class="sys-tabs">
+              <div class="sys-tabs-nav"></div>
+              <div class="sys-tab-content">
+                <div class="sys-tab-pane" data-sys="cob">
+                  <span class="sys-label">🔵 Cobranzas</span>
+                  <div class="img-grid">
+                    <figure class="img-item">
+                      <img src="imagenes/graficos_1.png" alt="Gráficas Cobranzas 1" class="img-real">
+                      <figcaption class="img-caption">PC1 Cobranzas — Gráfica de tipos de cobranza con filtros por
+                        período</figcaption>
+                    </figure>
+                    <figure class="img-item">
+                      <img src="imagenes/graficos_2.png" alt="Gráficas Cobranzas 2" class="img-real">
+                      <figcaption class="img-caption">PC1 Cobranzas — Gráfica de evolución por período</figcaption>
+                    </figure>
+                    <figure class="img-item">
+                      <img src="imagenes/graficos_3.png" alt="Gráficas Cobranzas 3" class="img-real">
+                      <figcaption class="img-caption">PC1 Cobranzas — Gráfica de distribución por categoría</figcaption>
+                    </figure>
+                  </div>
+                </div>
+                <div class="sys-tab-pane" data-sys="tra"><span class="sys-label">🟠 Transporte</span>
+                  <p>Gráficas sugeridas: <strong>Servicios por ruta</strong> (barras), <strong>Rentabilidad
+                      mensual</strong>
+                    (líneas), <strong>Distribución por tipo de carga</strong> (pastel).</p>
+                </div>
+                <div class="sys-tab-pane" data-sys="con"><span class="sys-label">🔴 Contabilidad</span>
+                  <p>Gráficas sugeridas: <strong>Ingresos vs. Egresos por mes</strong> (barras apiladas),
+                    <strong>Evolución del balance</strong> (líneas), <strong>Distribución por cuenta</strong> (pastel).
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="sys-tabs mt-2">
-            <div class="sys-tabs-nav"></div>
-            <div class="sys-tab-content">
-              <div class="sys-tab-pane" data-sys="cob">
-                <span class="sys-label cob">🔵 Cobranzas</span>
-                <div class="img-grid-uniform" style="margin-top:1rem;margin-bottom:0.5rem">
-                  <div class="img-item">
-                    <img src="imagenes/graficos_1.png" alt="Gráficas Cobranzas 1" class="img-real">
-                    <p class="img-caption">PC1 Cobranzas — Gráfica de tipos de cobranza con filtros por período</p>
-                  </div>
-                  <div class="img-item">
-                    <img src="imagenes/graficos_2.png" alt="Gráficas Cobranzas 2" class="img-real">
-                    <p class="img-caption">PC1 Cobranzas — Gráfica de evolución por período</p>
-                  </div>
-                  <div class="img-item">
-                    <img src="imagenes/graficos_3.png" alt="Gráficas Cobranzas 3" class="img-real">
-                    <p class="img-caption">PC1 Cobranzas — Gráfica de distribución por categoría</p>
-                  </div>
+          <footer class="comp-pager"></footer>
+        </article>
+
+        <!-- ── 08 · REPORTES ──────────────────────────────────────── -->
+        <article class="comp-detail" id="detail-reportes" data-mod="ope">
+          <div class="comp-hero" data-num="08">
+            <span class="comp-hero-icon">📄</span>
+            <div>
+              <h2>Reportes — Documentos consolidados</h2>
+              <p>Información procesada para revisar, imprimir o descargar</p>
+              <span class="mod-chip">🖥️ ON-LINE › Operativo</span>
+            </div>
+          </div>
+          <div class="comp-body">
+            <div class="must-have">
+              <h4>✅ Un reporte bien diseñado tiene:</h4>
+              <ul>
+                <li>Título y período que cubre</li>
+                <li>Datos consolidados y procesados</li>
+                <li>Opción de descarga o impresión (PDF, Excel)</li>
+                <li>Filtros para generar el reporte deseado</li>
+                <li>Resumen o totales al final</li>
+              </ul>
+            </div>
+
+            <h3 class="subtitle">¿Para quién es el reporte?</h3>
+            <div class="compare-grid">
+              <div class="compare-col neutral">
+                <div class="compare-head">👤 REPORTE PARA EL CLIENTE</div>
+                <div class="compare-body">
+                  <ul>
+                    <li>No va de la manera tradicional: debe ser lo más atractivo y entendible</li>
+                    <li>Simple y fácil de comprender</li>
+                    <li>Los ejemplos de esta sección están pensados para que los lea el cliente</li>
+                  </ul>
                 </div>
               </div>
-              <div class="sys-tab-pane" data-sys="tra"><span class="sys-label tra">🟠 Transporte</span>
-                <p>Gráficas sugeridas: <strong>Servicios por ruta</strong> (barras), <strong>Rentabilidad
-                    mensual</strong> (líneas), <strong>Distribución por tipo de carga</strong> (pastel).</p>
-              </div>
-              <div class="sys-tab-pane" data-sys="con"><span class="sys-label con">🔴 Contabilidad</span>
-                <p>Gráficas sugeridas: <strong>Ingresos vs. Egresos por mes</strong> (barras apiladas),
-                  <strong>Evolución del balance</strong> (líneas), <strong>Distribución por cuenta</strong> (pastel).
-                </p>
+              <div class="compare-col neutral">
+                <div class="compare-head">🧑‍💼 REPORTE GERENCIAL</div>
+                <div class="compare-body">
+                  <ul>
+                    <li>Más detallado</li>
+                    <li>No tan sencillo como el del cliente</li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- ── DETALLE: REPORTES ─────────────────────────────────────── -->
-    <div class="comp-detail" id="detail-reportes">
-      <button class="btn-back" onclick="backToCompGrid()">← Volver al listado</button>
-      <div class="comp-block">
-        <div class="comp-block-head">
-          <h2>📄 Reportes — Documentos consolidados</h2>
-          <div class="comp-sub">Información procesada para revisar, imprimir o descargar</div>
-        </div>
-        <div class="comp-block-body">
-          <div class="requires-box">
-            <h4>✅ Un reporte bien diseñado tiene:</h4>
-            <ul>
-              <li>Título y período que cubre</li>
-              <li>Datos consolidados y procesados</li>
-              <li>Opción de descarga o impresión (PDF, Excel)</li>
-              <li>Filtros para generar el reporte deseado</li>
-              <li>Resumen o totales al final</li>
-            </ul>
-          </div>
 
-          <div class="alert alert-navy mt-2">
-            <div class="alert-body">
+            <div class="info-box">
               <h4>CONSULTA vs. REPORTE</h4>
-              <p>
-                <strong>CONSULTA:</strong> Permite al usuario explorar los datos directamente en pantalla, sin
-                necesidad de descargar información.<br><br>
-                <strong>REPORTE:</strong> Es un documento consolidado generado por el sistema, que puede ser
-                impreso o descargado para su análisis o archivo.
+              <p style="font-size:.9rem;margin:0"><strong>CONSULTA:</strong> Permite al usuario explorar los datos
+                directamente en pantalla, sin necesidad de descargar información.<br><br>
+                <strong>REPORTE:</strong> Es un documento consolidado generado por el sistema, que puede ser impreso o
+                descargado para su análisis o archivo.
               </p>
             </div>
-          </div>
 
-          <div class="sys-tabs mt-2">
-            <div class="sys-tabs-nav"></div>
-            <div class="sys-tab-content">
-              <div class="sys-tab-pane" data-sys="cob">
-                <span class="sys-label cob">🔵 Cobranzas</span>
-                <img src="imagenes/reportes_cobranza.png" alt="Reporte Cobranzas" class="img-real">
-                <p class="img-caption">PC1 Cobranzas — Reporte final con estado de cada moroso, respuestas y
-                  calificación</p>
-              </div>
-              <div class="sys-tab-pane" data-sys="ven">
-                <span class="sys-label ven">🟢 Ventas</span>
-                <p>Reporte de ventas con resumen por período, totales por producto, estrategias más efectivas y
-                  comparativa con período anterior.</p>
-              </div>
-              <div class="sys-tab-pane" data-sys="tra">
-                <span class="sys-label tra">🟠 Transporte</span>
-                <img src="imagenes/reportes_transporte.png" alt="Reporte Transporte" class="img-real">
-                <p class="img-caption">Sistema Transporte — Estado de reserva, comprobante de pago y detalle de
-                  servicio</p>
-              </div>
-              <div class="sys-tab-pane" data-sys="con">
-                <span class="sys-label con">🔴 Contabilidad</span>
-                <img src="imagenes/reportes_contabilidad.png" alt="Reporte Contabilidad" class="img-real">
-                <p class="img-caption">Sistema Contabilidad — Balance general y estado de resultados</p>
-              </div>
-              <div class="sys-tab-pane" data-sys="rec">
-                <span class="sys-label rec">🔴 Reclamos</span>
-                <img src="imagenes/reportes_reclamos.png" alt="Reporte Reclamos" class="img-real">
-                <p class="img-caption">Sistema Reclamos — Reporte consolidado de reclamos por período</p>
+            <div class="sys-tabs">
+              <div class="sys-tabs-nav"></div>
+              <div class="sys-tab-content">
+                <div class="sys-tab-pane" data-sys="cob">
+                  <span class="sys-label">🔵 Cobranzas</span>
+                  <figure class="img-item">
+                    <img src="imagenes/reportes_cobranza.png" alt="Reporte Cobranzas" class="img-real">
+                    <figcaption class="img-caption">PC1 Cobranzas — Reporte final con estado de cada moroso, respuestas
+                      y calificación</figcaption>
+                  </figure>
+                </div>
+                <div class="sys-tab-pane" data-sys="ven">
+                  <span class="sys-label">🟢 Ventas</span>
+                  <p>Reporte de ventas con resumen por período, totales por producto, estrategias más efectivas y
+                    comparativa con período anterior.</p>
+                </div>
+                <div class="sys-tab-pane" data-sys="tra">
+                  <span class="sys-label">🟠 Transporte</span>
+                  <figure class="img-item">
+                    <img src="imagenes/reportes_transporte.png" alt="Reporte Transporte" class="img-real">
+                    <figcaption class="img-caption">Sistema Transporte — Estado de reserva, comprobante de pago y
+                      detalle de servicio</figcaption>
+                  </figure>
+                </div>
+                <div class="sys-tab-pane" data-sys="con">
+                  <span class="sys-label">🔴 Contabilidad</span>
+                  <figure class="img-item">
+                    <img src="imagenes/reportes_contabilidad.png" alt="Reporte Contabilidad" class="img-real">
+                    <figcaption class="img-caption">Sistema Contabilidad — Balance general y estado de resultados
+                    </figcaption>
+                  </figure>
+                </div>
+                <div class="sys-tab-pane" data-sys="rec">
+                  <span class="sys-label">🟣 Reclamos</span>
+                  <figure class="img-item">
+                    <img src="imagenes/reportes_reclamos.png" alt="Reporte Reclamos" class="img-real">
+                    <figcaption class="img-caption">Sistema Reclamos — Reporte consolidado de reclamos por período
+                    </figcaption>
+                  </figure>
+                </div>
               </div>
             </div>
           </div>
+          <footer class="comp-pager"></footer>
+        </article>
 
-        </div>
-      </div>
-    </div>
-
-    <!-- ── DETALLE: PROTOCOLOS ───────────────────────────────────── -->
-    <div class="comp-detail" id="detail-protocolos">
-      <button class="btn-back" onclick="backToCompGrid()">← Volver al listado</button>
-      <div class="comp-block">
-        <div class="comp-block-head">
-          <h2>📜 Protocolos — Las reglas del proceso</h2>
-          <div class="comp-sub">Define qué acción tomar según el estado del caso</div>
-        </div>
-        <div class="comp-block-body">
-          <p class="text-muted italic mb-2">Un protocolo define las reglas y condiciones bajo las cuales el sistema
-            ejecuta su proceso central.</p>
-          <div class="compare-grid">
+        <!-- ── 09 · PROTOCOLOS ────────────────────────────────────── -->
+        <article class="comp-detail" id="detail-protocolos" data-mod="ger">
+          <div class="comp-hero" data-num="09">
+            <span class="comp-hero-icon">📜</span>
             <div>
-              <div class="requires-box">
+              <h2>Protocolos — Las reglas del proceso</h2>
+              <p>Define qué acción tomar según el estado del caso</p>
+              <span class="mod-chip">🖥️ ON-LINE › Gerencial</span>
+              <span class="mod-chip">⚙️ BATCH › Aplicativo</span>
+            </div>
+          </div>
+          <div class="comp-body">
+            <p class="muted italic">Un protocolo define las reglas y condiciones bajo las cuales el sistema ejecuta su
+              proceso central.</p>
+            <div class="compare-grid">
+              <div class="must-have">
                 <h4>✅ Un protocolo bien diseñado muestra:</h4>
                 <ul>
                   <li>Las etapas o niveles del protocolo</li>
@@ -1015,9 +1254,7 @@
                   <li>Conexión clara con el proceso central</li>
                 </ul>
               </div>
-            </div>
-            <div>
-              <div class="error-box" style="height:100%">
+              <div class="common-error">
                 <h4>⚠️ Errores frecuentes</h4>
                 <ul>
                   <li>Sin condiciones definidas (¿cuándo cambia de etapa?)</li>
@@ -1026,66 +1263,103 @@
                 </ul>
               </div>
             </div>
-          </div>
-          <div class="sys-tabs mt-2">
-            <div class="sys-tabs-nav"></div>
-            <div class="sys-tab-content">
-              <div class="sys-tab-pane" data-sys="cob">
-                <span class="sys-label cob">🔵 Cobranzas</span>
-                <div class="proto-flow">
-                  <span class="proto-step">Leve</span><span class="proto-arrow">→</span>
-                  <span class="proto-step">Intermedia</span><span class="proto-arrow">→</span>
-                  <span class="proto-step">Prejudicial</span><span class="proto-arrow">→</span>
-                  <span class="proto-step">Judicial</span>
-                  <div class="proto-note">Estas fases varían según el nivel de mora y el saldo.</div>
+
+            <div class="sys-tabs">
+              <div class="sys-tabs-nav"></div>
+              <div class="sys-tab-content">
+                <div class="sys-tab-pane" data-sys="cob">
+                  <span class="sys-label">🔵 Cobranzas</span>
+                  <div class="proto-flow">
+                    <span class="proto-step">Leve</span><span class="proto-arrow">→</span>
+                    <span class="proto-step">Intermedia</span><span class="proto-arrow">→</span>
+                    <span class="proto-step">Prejudicial</span><span class="proto-arrow">→</span>
+                    <span class="proto-step">Judicial</span>
+                    <div class="proto-note">Estas fases varían según el nivel de mora y el saldo.</div>
+                  </div>
+                </div>
+                <div class="sys-tab-pane" data-sys="ven">
+                  <span class="sys-label">🟢 Ventas</span>
+                  <div class="proto-flow">
+                    <span class="proto-step">Identificar cliente</span><span class="proto-arrow">→</span>
+                    <span class="proto-step">Mostrar productos</span><span class="proto-arrow">→</span>
+                    <span class="proto-step">Interés</span><span class="proto-arrow">→</span>
+                    <span class="proto-step">Cierre</span>
+                  </div>
+                </div>
+                <div class="sys-tab-pane" data-sys="tra">
+                  <span class="sys-label">🟠 Transporte</span>
+                  <figure class="img-item" style="margin-bottom:.8rem">
+                    <img src="imagenes/protocolos_transporte.png" alt="Protocolo Transporte" class="img-real">
+                    <figcaption class="img-caption">Sistema Transporte — Protocolo de procesos</figcaption>
+                  </figure>
+                  <div class="proto-flow">
+                    <span class="proto-step">Cotización</span><span class="proto-arrow">→</span>
+                    <span class="proto-step">Orden de pago</span><span class="proto-arrow">→</span>
+                    <span class="proto-step">Confirmación</span><span class="proto-arrow">→</span>
+                    <span class="proto-step">Ejecución</span>
+                    <div class="proto-note">El servicio avanza solo cuando el pago es confirmado.</div>
+                  </div>
+                </div>
+                <div class="sys-tab-pane" data-sys="alm">
+                  <span class="sys-label">📦 Almacenamiento</span>
+                  <div class="pin-figure">
+                    <div class="pin-head">📍 Anatomía de “Editar Protocolo” <small>— toca los números</small></div>
+                    <div class="pin-stage">
+                      <img src="imagenes/protocolos_almacenamiento.png" alt="Protocolo Almacenamiento" class="img-real">
+                      <button class="pin" data-pin="1" style="left:22.2%;top:49.6%" type="button"
+                        aria-label="Pin 1">1</button>
+                      <button class="pin" data-pin="2" style="left:85.2%;top:31.1%" type="button"
+                        aria-label="Pin 2">2</button>
+                      <button class="pin" data-pin="3" style="left:67.4%;top:69.4%" type="button"
+                        aria-label="Pin 3">3</button>
+                      <button class="pin" data-pin="4" style="left:63.1%;top:80.4%" type="button"
+                        aria-label="Pin 4">4</button>
+                      <button class="pin" data-pin="5" style="left:59.1%;top:92.9%" type="button"
+                        aria-label="Pin 5">5</button>
+                    </div>
+                    <ul class="pin-list">
+                      <li class="pin-item" data-pin="1" tabindex="0"><b>1</b><span>Protocolos del sistema: el
+                          seleccionado se resalta.</span></li>
+                      <li class="pin-item" data-pin="2" tabindex="0"><b>2</b><span>Pasos que componen el protocolo
+                          seleccionado.</span></li>
+                      <li class="pin-item" data-pin="3" tabindex="0"><b>3</b><span>Añadir o eliminar pasos del
+                          protocolo.</span></li>
+                      <li class="pin-item" data-pin="4" tabindex="0"><b>4</b><span>Guardar los cambios del
+                          protocolo.</span></li>
+                      <li class="pin-item" data-pin="5" tabindex="0"><b>5</b><span>Hecho: termina la edición.</span>
+                      </li>
+                    </ul>
+                    <p class="img-caption">Sistema de Almacenamiento — Protocolo de procesos</p>
+                  </div>
                 </div>
               </div>
-              <div class="sys-tab-pane" data-sys="ven">
-                <span class="sys-label ven">🟢 Ventas</span>
-                <div class="proto-flow">
-                  <span class="proto-step">Identificar cliente</span><span class="proto-arrow">→</span>
-                  <span class="proto-step">Mostrar productos</span><span class="proto-arrow">→</span>
-                  <span class="proto-step">Interés</span><span class="proto-arrow">→</span>
-                  <span class="proto-step">Cierre</span>
-                </div>
-              </div>
-              <div class="sys-tab-pane" data-sys="tra">
-                <span class="sys-label tra">🟠 Transporte</span>
-                <img src="imagenes/protocolos_transporte.png" alt="Protocolo Transporte" class="img-real mb-1">
-                <div class="proto-flow">
-                  <span class="proto-step">Cotización</span><span class="proto-arrow">→</span>
-                  <span class="proto-step">Orden de pago</span><span class="proto-arrow">→</span>
-                  <span class="proto-step">Confirmación</span><span class="proto-arrow">→</span>
-                  <span class="proto-step">Ejecución</span>
-                  <div class="proto-note">El servicio avanza solo cuando el pago es confirmado.</div>
-                </div>
-              </div>
-              <div class="sys-tab-pane" data-sys="alm">
-                <span class="sys-label alm">📦 Almacenamiento</span>
-                <img src="imagenes/protocolos_almacenamiento.png" alt="Protocolo Almacenamiento" class="img-real">
-                <p class="img-caption">Sistema de Almacenamiento — Protocolo de procesos</p>
+            </div>
+
+            <div class="prof-question">
+              <div class="q-icon">🎤</div>
+              <div>
+                <small>Pregunta del profesor</small>
+                <p>“¿Cómo definieron su protocolo? ¿Qué condición hace que un caso pase de una etapa a la siguiente?”
+                </p>
               </div>
             </div>
           </div>
-          <div class="question-box">
-            <div class="q-icon">🎤</div>
-            <p>"¿Cómo definieron su protocolo? ¿Qué condición hace que un caso pase de una etapa a la siguiente?"</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- ── DETALLE: BATCH ────────────────────────────────────────── -->
-    <div class="comp-detail" id="detail-batch">
-      <button class="btn-back" onclick="backToCompGrid()">← Volver al listado</button>
-      <div class="comp-block">
-        <div class="comp-block-head">
-          <h2>🤖 Módulo BATCH — Procesos automáticos</h2>
-          <div class="comp-sub">El sistema trabaja solo, sin usuario presente</div>
-        </div>
-        <div class="comp-block-body">
-          <div class="online-batch">
+          <footer class="comp-pager"></footer>
+        </article>
+
+        <!-- ── 10 · MÓDULO BATCH ──────────────────────────────────── -->
+        <article class="comp-detail" id="detail-batch" data-mod="apl">
+          <div class="comp-hero" data-num="10">
+            <span class="comp-hero-icon">🤖</span>
             <div>
-              <div class="requires-box">
+              <h2>Módulo BATCH — Procesos automáticos</h2>
+              <p>El sistema trabaja solo, sin usuario presente</p>
+              <span class="mod-chip">⚙️ BATCH › Aplicativo</span>
+            </div>
+          </div>
+          <div class="comp-body">
+            <div class="compare-grid">
+              <div class="must-have">
                 <h4>✅ El módulo BATCH suele incluir:</h4>
                 <ul>
                   <li>Actualización de tablas maestras</li>
@@ -1095,70 +1369,69 @@
                   <li>Procesos de cierre periódico</li>
                 </ul>
               </div>
+              <div class="info-box">
+                <h4>💡 ON-LINE vs. BATCH</h4>
+                <p style="font-size:.9rem"><strong>ON-LINE</strong> → El usuario interactúa en tiempo real.<br><br>
+                  <strong>BATCH</strong> → El sistema trabaja solo, sin usuario presente, en horario programado.
+                </p>
+              </div>
             </div>
-            <div>
-              <div class="alert alert-navy" style="margin:0;height:100%">
-                <div class="alert-body">
-                  <h4>💡 ON-LINE vs. BATCH</h4>
-                  <p><strong>ON-LINE</strong> → El usuario interactúa en tiempo real.<br><br>
-                    <strong>BATCH</strong> → El sistema trabaja solo, sin usuario presente, en horario
-                    programado.
-                  </p>
+
+            <div class="callout callout-warn">
+              <div class="callout-icon">⚠️</div>
+              <div class="callout-body">
+                <p><strong>NO</strong> todo proceso es BATCH. Si requiere la acción de un usuario para ejecutarse, es
+                  ON-LINE.</p>
+              </div>
+            </div>
+
+            <div class="callout callout-tip">
+              <div class="callout-icon">⏳</div>
+              <div class="callout-body">
+                <h4>¿BATCH o junto con la transacción?</h4>
+                <p>El batch se actualiza cada varios días o meses. Los datos que cambian constantemente (por ejemplo,
+                  los saldos) se actualizan junto con la transacción; los que casi no cambian pueden ir en batch.</p>
+              </div>
+            </div>
+
+            <div class="sys-tabs">
+              <div class="sys-tabs-nav"></div>
+              <div class="sys-tab-content">
+                <div class="sys-tab-pane" data-sys="cob"><span class="sys-label">🔵 Cobranzas</span>
+                  <p>Fabricación de tickets de cobranza, actualización de protocolos según mora acumulada, generación de
+                    estadísticas de operadores.</p>
+                </div>
+                <div class="sys-tab-pane" data-sys="ven"><span class="sys-label">🟢 Ventas</span>
+                  <p>Actualización de atributos de clientes (total_cierres_ventas, cant_entradas), actualización de
+                    efectividad de estrategias, generación de KPIs.</p>
+                </div>
+                <div class="sys-tab-pane" data-sys="tra"><span class="sys-label">🟠 Transporte</span>
+                  <p>Actualización de disponibilidad de vehículos, generación de estadísticas de demanda por ruta,
+                    actualización de tarifas.</p>
+                </div>
+                <div class="sys-tab-pane" data-sys="con"><span class="sys-label">🔴 Contabilidad</span>
+                  <p>Cierre mensual de período contable, generación de balances automáticos, actualización de tipos de
+                    cambio, cálculo de depreciaciones.</p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="alert alert-orange mt-2">
-            <div class="alert-icon">⚠️</div>
-            <div class="alert-body">
-              <p><strong>NO</strong> todo proceso es BATCH. Si requiere la acción de un usuario para
-                ejecutarse,
-                es
-                ON-LINE.</p>
-            </div>
-          </div>
-          <div class="sys-tabs mt-2">
-            <div class="sys-tabs-nav"></div>
-            <div class="sys-tab-content">
-              <div class="sys-tab-pane" data-sys="cob"><span class="sys-label cob">🔵 Cobranzas</span>
-                <p>Fabricación de tickets de cobranza, actualización de protocolos según mora acumulada,
-                  generación de
-                  estadísticas de operadores.</p>
-              </div>
-              <div class="sys-tab-pane" data-sys="ven"><span class="sys-label ven">🟢 Ventas</span>
-                <p>Actualización de atributos de clientes (total_cierres_ventas, cant_entradas), actualización
-                  de
-                  efectividad de estrategias, generación de KPIs.</p>
-              </div>
-              <div class="sys-tab-pane" data-sys="tra"><span class="sys-label tra">🟠 Transporte</span>
-                <p>Actualización de disponibilidad de vehículos, generación de estadísticas de demanda por
-                  ruta,
-                  actualización de tarifas.</p>
-              </div>
-              <div class="sys-tab-pane" data-sys="con"><span class="sys-label con">🔴 Contabilidad</span>
-                <p>Cierre mensual de período contable, generación de balances automáticos, actualización de
-                  tipos
-                  de
-                  cambio, cálculo de depreciaciones.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          <footer class="comp-pager"></footer>
+        </article>
 
-    <!-- ── DETALLE: BACKUP ───────────────────────────────────────── -->
-    <div class="comp-detail" id="detail-backup">
-      <button class="btn-back" onclick="backToCompGrid()">← Volver al listado</button>
-      <div class="comp-block">
-        <div class="comp-block-head">
-          <h2>💾 Backup y Mantenimiento de BD</h2>
-          <div class="comp-sub">Contingencia y salud del sistema</div>
-        </div>
-        <div class="comp-block-body">
-          <div class="compare-grid">
+        <!-- ── 11 · BACKUP Y MANTENIMIENTO ────────────────────────── -->
+        <article class="comp-detail" id="detail-backup" data-mod="tec">
+          <div class="comp-hero" data-num="11">
+            <span class="comp-hero-icon">💾</span>
             <div>
-              <div class="requires-box">
+              <h2>Backup y Mantenimiento de BD</h2>
+              <p>Contingencia y salud del sistema</p>
+              <span class="mod-chip">⚙️ BATCH › Técnico</span>
+            </div>
+          </div>
+          <div class="comp-body">
+            <div class="compare-grid">
+              <div class="must-have">
                 <h4>💾 BACKUP — Debe mostrar:</h4>
                 <ul>
                   <li>Frecuencia de backup programado</li>
@@ -1168,10 +1441,8 @@
                   <li>Destino del backup (disco, nube, etc.)</li>
                 </ul>
               </div>
-            </div>
-            <div>
-              <div class="requires-box" style="border-color:var(--navy-mid);background:var(--navy-lt)">
-                <h4 style="color:var(--navy-mid)">🔧 MANTENIMIENTO BD — Debe mostrar:</h4>
+              <div class="info-box">
+                <h4>🔧 MANTENIMIENTO BD — Debe mostrar:</h4>
                 <ul>
                   <li>Monitoreo de consultas lentas</li>
                   <li>Gestión de datos obsoletos</li>
@@ -1180,188 +1451,224 @@
                 </ul>
               </div>
             </div>
-          </div>
 
-          <h4 class="bold mt-2 mb-1" style="font-size:0.95rem;color:var(--navy)">Ejemplos reales:</h4>
-          <div class="img-grid-uniform">
-            <div class="img-item">
-              <img src="imagenes/backup_cobranza.png" alt="Backup Cobranzas" class="img-real">
-              <p class="img-caption">PC1 Cobranzas — Backup con BUSCAR BD, TIPO DE BACKUP, AGREGAR / ELIMINAR
-              </p>
+            <h3 class="subtitle">Ejemplos reales:</h3>
+            <div class="img-grid">
+              <figure class="img-item">
+                <img src="imagenes/backup_cobranza.png" alt="Backup Cobranzas" class="img-real">
+                <figcaption class="img-caption">PC1 Cobranzas — Backup con BUSCAR BD, TIPO DE BACKUP, AGREGAR / ELIMINAR
+                </figcaption>
+              </figure>
+              <figure class="img-item">
+                <img src="imagenes/backup_ventas.png" alt="Backup Ventas" class="img-real">
+                <figcaption class="img-caption">Cierre de Ventas — Historial por horas, backup manual y opción de
+                  restaurar</figcaption>
+              </figure>
+              <figure class="img-item">
+                <img src="imagenes/backup_contabilidad.png" alt="Backup Contabilidad" class="img-real">
+                <figcaption class="img-caption">PC1 Contabilidad — Backup con opciones de contingencia y salud del
+                  sistema</figcaption>
+              </figure>
+              <figure class="img-item">
+                <img src="imagenes/mantenimiento_cobranza.png" alt="Mantenimiento BD" class="img-real">
+                <figcaption class="img-caption">PC1 Cobranzas — Mantenimiento con monitoreo de consultas lentas, datos
+                  obsoletos y frecuencia de datos</figcaption>
+              </figure>
             </div>
-            <div class="img-item">
-              <img src="imagenes/backup_ventas.png" alt="Backup Ventas" class="img-real">
-              <p class="img-caption">Cierre de Ventas — Historial por horas, backup manual y opción de
-                restaurar
-              </p>
-            </div>
-            <div class="img-item">
-              <img src="imagenes/backup_contabilidad.png" alt="Backup Contabilidad" class="img-real">
-              <p class="img-caption">PC1 Contabilidad — Backup con opciones de contingencia y salud del
-                sistema
-              </p>
-            </div>
-            <div class="img-item">
-              <img src="imagenes/mantenimiento_cobranza.png" alt="Mantenimiento BD" class="img-real">
-              <p class="img-caption">PC1 Cobranzas — Mantenimiento con monitoreo de consultas lentas, datos
-                obsoletos
-                y frecuencia de datos</p>
-            </div>
-          </div>
 
-          <div class="alert alert-orange mt-2">
-            <div class="alert-icon">⚠️</div>
-            <div class="alert-body">
-              <p>Estos módulos se olvidan con frecuencia. El profesor los revisa y espera que expliquen para
-                qué
-                sirve
-                cada opción.</p>
+            <div class="callout callout-warn">
+              <div class="callout-icon">⚠️</div>
+              <div class="callout-body">
+                <p>Estos módulos se olvidan con frecuencia. El profesor los revisa y espera que expliquen para qué sirve
+                  cada opción.</p>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+          <footer class="comp-pager"></footer>
+        </article>
 
-    </div><!-- /components-page -->
+      </section><!-- /componentes -->
 
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!-- PREGUNTAS PROFESOR -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div id="defense-page" class="section-page">
-      <div class="section">
-        <div class="section-header">
-          <span class="section-tag">Defensa oral</span>
-          <h1 class="section-title">Lo que el profesor siempre pregunta</h1>
-        </div>
-        <p class="text-muted italic mb-3">No es suficiente diseñarlo bien. Debes poder explicarlo con claridad
-          cuando el
-          profesor te pregunte.</p>
-
-        <div class="question-row">
-          <div class="question-num">1</div>
-          <div class="question-text">"¿Cómo definieron su protocolo y cómo funciona en su sistema?"</div>
-        </div>
-        <div class="question-row">
-          <div class="question-num">2</div>
-          <div class="question-text">"Explícame el control de accesos. ¿Qué puede hacer el perfil [X] y por qué
-            tiene
-            acceso a esos módulos?"</div>
-        </div>
-        <div class="question-row">
-          <div class="question-num">3</div>
-          <div class="question-text">"¿Esta interfaz realmente funciona o está correctamente planteada para su
-            sistema?"
-          </div>
-        </div>
-        <div class="question-row">
-          <div class="question-num">4</div>
-          <div class="question-text">"Explícame cómo funciona el catálogo y el proceso principal de su sistema."
-          </div>
-        </div>
-        <div class="question-row">
-          <div class="question-num">5</div>
-          <div class="question-text">"¿Para qué sirve este KPI o gráfica en su sistema? ¿Cómo se calcula?"</div>
+      <!-- ════════════════════════════════════════════════════════════ -->
+      <!-- 6 · DEFENSA ORAL -->
+      <!-- ════════════════════════════════════════════════════════════ -->
+      <section class="page" data-page="defensa">
+        <div class="page-head">
+          <span class="page-tag">Defensa oral</span>
+          <h1 class="page-title">Lo que el profesor siempre pregunta</h1>
+          <p class="page-lead">No es suficiente diseñarlo bien. Debes poder explicarlo con claridad cuando el profesor
+            te pregunte.</p>
         </div>
 
-        <div class="alert alert-red mt-2">
-          <div class="alert-icon">⚠️</div>
-          <div class="alert-body">
-            <p>El profesor pregunta al azar a cualquier integrante. No hay uno que "sabe más" — <strong>todos
-                deben
+        <div class="q-row">
+          <div class="q-num">1</div>
+          <div class="q-text">“¿Cómo definieron su protocolo y cómo funciona en su sistema?”</div>
+        </div>
+        <div class="q-row">
+          <div class="q-num">2</div>
+          <div class="q-text">“Explícame el control de accesos. ¿Qué puede hacer el perfil [X] y por qué tiene acceso a
+            esos módulos?”</div>
+        </div>
+        <div class="q-row">
+          <div class="q-num">3</div>
+          <div class="q-text">“¿Esta interfaz realmente funciona o está correctamente planteada para su sistema?”</div>
+        </div>
+        <div class="q-row">
+          <div class="q-num">4</div>
+          <div class="q-text">“Explícame cómo funciona el catálogo y el proceso principal de su sistema.”</div>
+        </div>
+        <div class="q-row">
+          <div class="q-num">5</div>
+          <div class="q-text">“¿Para qué sirve este KPI o gráfica en su sistema? ¿Cómo se calcula?”</div>
+        </div>
+
+        <div class="callout callout-danger">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-body">
+            <p>El profesor pregunta al azar a cualquier integrante. No hay uno que “sabe más” — <strong>todos deben
                 saber todo</strong>.</p>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <!-- TIPS -->
-    <!-- ════════════════════════════════════════════════════════════ -->
-    <div id="tips-page" class="section-page">
-      <div class="section">
-        <div class="section-header">
-          <span class="section-tag">Checklist</span>
-          <h1 class="section-title">Tips — Antes de exponer</h1>
+        <!-- Simulador: la lógica está en scripts.js (sección 08). Las preguntas se editan en SIM_QUESTIONS -->
+        <div class="sim" id="sim">
+          <div class="sim-head">
+            <h3>🎲 Simulador de defensa oral</h3>
+            <span class="sim-count"></span>
+            <span class="sim-timer"></span>
+          </div>
+          <div class="sim-body"></div>
         </div>
-        <p class="text-muted italic mb-2">Marca cada punto que ya tienes listo. Llega con todo completado.</p>
 
-        <div class="progress-bar-wrap mb-1">
-          <div class="progress-bar" id="progress-bar" style="width:0%"></div>
+        <nav class="page-pager" data-pager></nav>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════ -->
+      <!-- 7 · TIPS -->
+      <!-- ════════════════════════════════════════════════════════════ -->
+      <section class="page" data-page="tips">
+        <div class="page-head">
+          <span class="page-tag">Checklist</span>
+          <h1 class="page-title">Tips — Antes de exponer</h1>
+          <p class="page-lead">Marca cada punto que ya tienes listo. Llega con todo completado.</p>
         </div>
-        <div class="progress-label mb-3" id="progress-label">0 / 10 completados</div>
 
-        <ul class="checklist" id="checklist">
-          <li class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"></div>La arquitectura muestra TODOS los módulos que diseñé
+        <div class="progress">
+          <div class="progress-fill" id="progress-bar"></div>
+        </div>
+        <div class="progress-label" id="progress-label">0 / 10 completados</div>
+
+        <ul class="checklist">
+          <li class="check-item"><span class="check-box"></span>La arquitectura muestra TODOS los módulos que diseñé
           </li>
-          <li class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"></div>Tengo pantalla de login con método adicional de autenticación
+          <li class="check-item"><span class="check-box"></span>Tengo pantalla de login con método adicional de
+            autenticación</li>
+          <li class="check-item"><span class="check-box"></span>Tengo pantalla de perfiles con accesos definidos por
+            cada rol</li>
+          <li class="check-item"><span class="check-box"></span>Mis catálogos muestran los tres estados: lista, detalle
+            y edición</li>
+          <li class="check-item"><span class="check-box"></span>El proceso central tiene flujo completo con
+            confirmaciones</li>
+          <li class="check-item"><span class="check-box"></span>Mis KPIs tienen fórmula, valor actual y meta definida
           </li>
-          <li class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"></div>Tengo pantalla de perfiles con accesos definidos por cada rol
+          <li class="check-item"><span class="check-box"></span>Mis gráficas tienen título, ejes y datos representativos
           </li>
-          <li class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"></div>Mis catálogos muestran los tres estados: lista, detalle y edición
+          <li class="check-item"><span class="check-box"></span>Tengo backup con historial y opción de restauración</li>
+          <li class="check-item"><span class="check-box"></span>Todos los integrantes pueden explicar cualquier pantalla
           </li>
-          <li class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"></div>El proceso central tiene flujo completo con confirmaciones
-          </li>
-          <li class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"></div>Mis KPIs tienen fórmula, valor actual y meta definida
-          </li>
-          <li class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"></div>Mis gráficas tienen título, ejes y datos representativos
-          </li>
-          <li class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"></div>Tengo backup con historial y opción de restauración
-          </li>
-          <li class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"></div>Todos los integrantes pueden explicar cualquier pantalla
-          </li>
-          <li class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"></div>Tengo el folder físico impreso listo para entregar
-          </li>
+          <li class="check-item"><span class="check-box"></span>Tengo el folder físico impreso listo para entregar</li>
         </ul>
 
-        <!-- Cierre -->
-        <div
-          style="background:var(--navy);border-radius:var(--radius);padding:2.5rem;text-align:center;margin-top:2rem">
-          <h2 style="font-size:2rem;font-weight:800;color:white;margin-bottom:1rem">¡Éxito en su PC1!</h2>
-          <p
-            style="font-size:1rem;color:#A0C4FF;font-style:italic;margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto">
-            El diseño externo no es decoración.<br>Es la forma en que demuestras que entiendes cómo funciona tu
+        <div class="celebrate" id="celebrate">🎉 ¡Todo listo! Ya puedes exponer con seguridad.</div>
+
+        <div class="closing">
+          <h2>¡Éxito en su PC1!</h2>
+          <p>El diseño externo no es decoración.<br>Es la forma en que demuestras que entiendes cómo funciona tu
             sistema.
           </p>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:500px;margin:0 auto">
-            <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:1rem">
-              <div style="font-size:1.8rem;margin-bottom:6px">🎨</div>
-              <div style="font-size:0.88rem;font-weight:700;color:white">Diseña</div>
-              <div style="font-size:0.78rem;color:#A0C4FF">con claridad y detalle</div>
+          <div class="closing-grid">
+            <div class="closing-card"><span>🎨</span><b>Diseña</b><small>con claridad y detalle</small></div>
+            <div class="closing-card"><span>🧠</span><b>Entiende</b><small>cada elemento del sistema</small></div>
+            <div class="closing-card"><span>🎤</span><b>Defiende</b><small>con seguridad lo que diseñaste</small></div>
+          </div>
+        </div>
+
+        <nav class="page-pager" data-pager></nav>
+      </section>
+
+    </main>
+
+    <button class="scroll-top" type="button" title="Volver arriba" aria-label="Volver arriba">↑</button>
+
+    <!-- Plantilla del mapa de arquitectura: el JS la copia en Inicio y en Arquitectura.
+         Para cambiar un módulo, edítalo aquí una sola vez. -->
+    <template id="tpl-mapa">
+      <div class="mapa">
+        <div class="mapa-top">
+          <div class="mapa-sistema">🗄️ TU SISTEMA</div>
+          <div class="mapa-seg" data-mod="seg">
+            <strong>🛡️ Seguridad</strong>
+            <small>controla el acceso a todo el sistema</small>
+            <button class="chip" data-comp="login" type="button"><b>01</b>Control de acceso</button>
+            <button class="chip" data-comp="perfiles" type="button"><b>02</b>Perfiles y permisos</button>
+          </div>
+        </div>
+
+        <div class="mapa-branches">
+          <div class="mapa-branch online">
+            <div class="mapa-branch-head">🖥️ ON-LINE <small>tiempo real · con usuario presente</small></div>
+            <div class="mapa-modules">
+              <div class="mapa-module" data-mod="ger">
+                <h4>Gerencial</h4>
+                <p>parámetros · consultas · KPIs y gráficas (solo visualización)</p>
+                <div class="chips">
+                  <button class="chip" data-comp="catalogos" type="button"><b>03</b>Catálogos</button>
+                  <button class="chip" data-comp="protocolos" type="button"><b>09</b>Protocolos</button>
+                  <button class="chip" data-comp="consultas" type="button"><b>05</b>Consultas</button>
+                  <button class="chip" data-comp="kpis" type="button"><b>06</b>KPIs</button>
+                  <button class="chip" data-comp="graficas" type="button"><b>07</b>Gráficas</button>
+                </div>
+              </div>
+              <div class="mapa-module" data-mod="ope">
+                <h4>Operativo</h4>
+                <p>ingreso de datos · reportes</p>
+                <div class="chips">
+                  <button class="chip" data-comp="proceso" type="button"><b>04</b>Proceso central</button>
+                  <button class="chip" data-comp="reportes" type="button"><b>08</b>Reportes</button>
+                </div>
+              </div>
             </div>
-            <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:1rem">
-              <div style="font-size:1.8rem;margin-bottom:6px">🧠</div>
-              <div style="font-size:0.88rem;font-weight:700;color:white">Entiende</div>
-              <div style="font-size:0.78rem;color:#A0C4FF">cada elemento del sistema</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:1rem">
-              <div style="font-size:1.8rem;margin-bottom:6px">🎤</div>
-              <div style="font-size:0.88rem;font-weight:700;color:white">Defiende</div>
-              <div style="font-size:0.78rem;color:#A0C4FF">con seguridad lo que diseñaste</div>
+          </div>
+
+          <div class="mapa-branch batch">
+            <div class="mapa-branch-head">⚙️ BATCH <small>automático · sin usuario</small></div>
+            <div class="mapa-modules">
+              <div class="mapa-module" data-mod="apl">
+                <h4>Aplicativo</h4>
+                <p>actualización de BD · estadísticas (aquí se calculan los KPIs) · tickets · protocolos</p>
+                <div class="chips">
+                  <button class="chip" data-comp="batch" type="button"><b>10</b>Módulo BATCH</button>
+                  <button class="chip" data-comp="protocolos" type="button"><b>09</b>Protocolos</button>
+                </div>
+              </div>
+              <div class="mapa-module" data-mod="tec">
+                <h4>Técnico</h4>
+                <p>mantenimiento de BD · contingencia</p>
+                <div class="chips">
+                  <button class="chip" data-comp="backup" type="button"><b>11</b>Backup y mant.</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        <p class="mapa-tip">💡 <strong>El KPI se calcula en BATCH y se visualiza en ON-LINE.</strong></p>
       </div>
-    </div>
+    </template>
 
-  </main>
-
-
-
-  <!-- ── SCROLL TO TOP ───────────────────────────────────────────── -->
-  <button id="scroll-top" onclick="scrollToTop()" title="Volver arriba">↑</button>
+  </div><!-- /asesoria-pc1 -->
 
   <script src="scripts.js"></script>
-  <script src="lightbox.js"></script>
 </body>
 
 </html>
