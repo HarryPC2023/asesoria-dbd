@@ -15,6 +15,7 @@
    09. Botón "volver arriba"
    10. Visor de imágenes (lightbox)
    11. Inicio
+   12. Imprimir / guardar PDF
    ════════════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -803,6 +804,52 @@
     });
   }
 
+  /* ── 12. IMPRIMIR / GUARDAR PDF ──────────────────────────────────────
+     El CSS de impresión (sección 17 de estilos.css) muestra TODO por sí solo:
+     funciona incluso con Ctrl+P sin tocar el botón. Este módulo agrega:
+       · el menú del botón "Imprimir / PDF" (con colores | ahorro de tinta);
+       · la clase .ink-saver solo mientras dura la impresión;
+       · la espera a que carguen las fuentes antes de abrir el diálogo.
+     ─────────────────────────────────────────────────────────────────── */
+  var printer = (function () {
+    var toggleBtn, menu;
+
+    function setMenu(open) {
+      if (!menu) return;
+      menu.hidden = !open;
+      toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    function run(mode) {
+      setMenu(false);
+      root.classList.toggle('ink-saver', mode === 'ink');
+      var ready = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+      ready.then(function () { window.print(); });
+    }
+
+    function cleanup() { root.classList.remove('ink-saver'); }
+
+    function init() {
+      toggleBtn = $('[data-print-toggle]');
+      menu = $('.ap-print-menu');
+      if (!toggleBtn || !menu) return;
+
+      toggleBtn.addEventListener('click', function (e) { e.stopPropagation(); setMenu(menu.hidden); });
+      menu.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var opt = e.target.closest('[data-print]');
+        if (opt) run(opt.dataset.print);
+      });
+      document.addEventListener('click', function () { setMenu(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+
+      // Ctrl+P / menú del navegador: se imprime en colores; al terminar se limpia cualquier modo temporal
+      window.addEventListener('afterprint', cleanup);
+    }
+
+    return { init: init };
+  })();
+
   /* ── ARRANQUE ────────────────────────────────────────────────────── */
   function init() {
     if (root.dataset.apReady) return; // evita inicializar dos veces (p. ej. al integrarlo en SIGA)
@@ -815,6 +862,7 @@
     sim.init();
     initScrollTop();
     lightbox.init();
+    printer.init();
     watchEvaluationSection();
     renderProgress();
     refreshTabs();

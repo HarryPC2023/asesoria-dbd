@@ -39,6 +39,21 @@
         </div>
         <span id="ap-progress-label">Ruta 0%</span>
       </div>
+
+      <!-- Imprimir / guardar PDF: imprime TODO el contenido de estudio (ver sección 17 del CSS) -->
+      <div class="ap-print">
+        <button class="ap-print-btn" data-print-toggle type="button" aria-haspopup="true" aria-expanded="false"
+          title="Imprimir o guardar como PDF">🖨️ <span>Imprimir / PDF</span></button>
+        <div class="ap-print-menu" hidden>
+          <p><strong>Se imprime TODO:</strong> todas las páginas, todas las pestañas de sistemas, los ❌ y ✅ juntos y
+            los pines con su lista.</p>
+          <button data-print="color" type="button">🎨 Con colores <small>recomendado para PDF</small></button>
+          <button data-print="ink" type="button">💧 Ahorro de tinta <small>blanco y negro, fondos
+              limpios</small></button>
+          <small>En el cuadro de impresión elige «Guardar como PDF». Si no salen los colores, activa «Gráficos de
+            fondo».</small>
+        </div>
+      </div>
     </header>
 
     <main class="ap-main">
@@ -71,7 +86,7 @@
           </div>
         </div>
 
-        <div class="home-section">
+        <div class="home-section no-print">
           <h2>Tu ruta de estudio</h2>
           <p>Sigue los pasos en orden. Cada uno se marca ✓ cuando lo visitas.</p>
           <ol class="route">
@@ -90,11 +105,11 @@
 
         <div class="home-section">
           <h2>Mapa de la arquitectura</h2>
-          <p>Toca cualquier componente para ir directo a su explicación.</p>
+          <p class="no-print">Toca cualquier componente para ir directo a su explicación.</p>
           <div data-mapa></div>
         </div>
 
-        <div class="home-section">
+        <div class="home-section no-print">
           <h2>Elige un sistema de ejemplo</h2>
           <p>Las pestañas de cada componente se abrirán con el sistema que elijas.</p>
           <div class="sys-picker">
@@ -523,8 +538,7 @@
                 <div class="reveal-body">
                   <!-- Pines: tocar un número resalta su explicación (y al revés). Posición en % de la imagen -->
                   <div class="pin-figure">
-                    <div class="pin-head">📍 Toca los números <small>— cada uno explica un elemento de la
-                        pantalla</small></div>
+                    <div class="pin-head">📍 Anatomía de la pantalla de ingreso <small>— toca los números</small></div>
                     <div class="pin-stage">
                       <img src="imagenes/login_cobranza.png" alt="Cobranzas Login" class="img-real">
                       <button class="pin" data-pin="1" style="left:92.9%;top:13.2%" type="button"

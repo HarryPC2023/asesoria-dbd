@@ -19,6 +19,7 @@
    14. Tips, checklist y cierre
    15. Visor de imágenes (lightbox)
    16. Responsive
+   17. Impresión / PDF  (botón, @page, "vista de estudio" y ahorro de tinta)
    ════════════════════════════════════════════════════════════════════ */
 
 /* ── 01. VARIABLES Y BASE ─────────────────────────────────────────── */
@@ -2752,4 +2753,471 @@
   width: 100%;
   max-height: none;
   height: auto;
+}
+
+
+/* ── 17. IMPRESIÓN / PDF ───────────────────────────────────────────── */
+
+/* 17.1 · Botón y menú (solo en pantalla) */
+.asesoria-pc1 .ap-print {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.asesoria-pc1 .ap-print-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  transition: background 0.2s;
+}
+
+.asesoria-pc1 .ap-print-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.asesoria-pc1 .ap-print-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 12px);
+  z-index: 70;
+  width: 300px;
+  background: #fff;
+  color: var(--text);
+  border: 2px solid var(--indigo-l);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  padding: 1rem;
+  animation: ap-pop 0.25s ease both;
+}
+
+.asesoria-pc1 .ap-print-menu p {
+  font-size: 0.8rem;
+  margin: 0 0 0.8rem;
+}
+
+.asesoria-pc1 .ap-print-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: #fff;
+  color: var(--ink);
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  font-size: 0.86rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.asesoria-pc1 .ap-print-menu button:hover {
+  border-color: var(--indigo);
+  background: var(--indigo-l);
+}
+
+.asesoria-pc1 .ap-print-menu button small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.asesoria-pc1 .ap-print-menu>small {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 700px) {
+  .asesoria-pc1 .ap-print-btn span {
+    display: none;
+  }
+}
+
+/* 17.2 · Página: tamaño y numeración.
+   Nota para SIGA: @page es global del navegador. Si lo integras en SIGA, mueve esta regla
+   al CSS general de SIGA o elimínala (el resto del bloque sigue funcionando). */
+@page {
+  size: A4;
+  margin: 12mm 12mm 15mm;
+
+  @bottom-center {
+    content: "Asesoría PC1 · Diseño de Base de Datos  —  " counter(page) " / " counter(pages);
+    font-family: 'Sora', sans-serif;
+    font-size: 8pt;
+    color: #64748B;
+  }
+}
+
+/* 17.3 · "Vista de estudio": TODO el contenido visible y ordenado.
+   Regla de oro: nada de estudio se oculta con display:none a ciegas; lo que en pantalla
+   depende de un clic (páginas, componentes, pestañas, revelar) aquí se muestra completo. */
+@media print {
+
+  /* Color: los fondos SÍ se imprimen (si no, las cajas y encabezados saldrían en blanco) */
+  .asesoria-pc1,
+  .asesoria-pc1 * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+  }
+
+  .asesoria-pc1 {
+    background: #fff;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    min-height: 0;
+  }
+
+  .asesoria-pc1 .ap-main {
+    max-width: none;
+    padding: 0;
+  }
+
+  /* — Lo que NO se imprime: interfaz y controles — */
+  .asesoria-pc1 .ap-header,
+  .asesoria-pc1 .page-pager,
+  .asesoria-pc1 .comp-pager,
+  .asesoria-pc1 .scroll-top,
+  .asesoria-pc1 .lb-overlay,
+  .asesoria-pc1 .zoom-badge,
+  .asesoria-pc1 .sys-tabs-nav,
+  .asesoria-pc1 .btn,
+  .asesoria-pc1 .btn-reveal,
+  .asesoria-pc1 .hero-actions,
+  .asesoria-pc1 .no-print,
+  .asesoria-pc1 .sim,
+  .asesoria-pc1 #comp-grid-panel,
+  .asesoria-pc1 .pin::after,
+  .asesoria-pc1 .pin-head small,
+  .asesoria-pc1 .celebrate,
+  .asesoria-pc1 .progress,
+  .asesoria-pc1 .progress-label {
+    display: none !important;
+  }
+
+  /* — Todas las páginas, una tras otra — */
+  .asesoria-pc1 .page {
+    display: block !important;
+    break-before: page;
+  }
+
+  .asesoria-pc1 .page:first-of-type {
+    break-before: auto;
+  }
+
+  /* — Todos los componentes, cada uno en hoja nueva, aunque ninguno esté "abierto" — */
+  .asesoria-pc1 .comp-detail {
+    display: block !important;
+    break-before: page;
+  }
+
+  /* — Todas las pestañas de sistemas, con la etiqueta de cada panel — */
+  .asesoria-pc1 .sys-tabs {
+    border: 1.5px solid var(--line);
+  }
+
+  .asesoria-pc1 .sys-tab-pane {
+    display: block !important;
+    padding-bottom: 0.4rem;
+  }
+
+  .asesoria-pc1 .sys-tab-pane+.sys-tab-pane {
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 2px dashed var(--line);
+  }
+
+  /* — ❌ y ✅ juntos — */
+  .asesoria-pc1 .reveal-good {
+    display: block !important;
+  }
+
+  /* — Pines: se conservan los números y su lista de explicaciones — */
+  .asesoria-pc1 .pin.active {
+    background: var(--orange);
+    transform: translate(-50%, -50%);
+  }
+
+  .asesoria-pc1 .pin-item.active {
+    background: #fff;
+    border-color: var(--line);
+  }
+
+  .asesoria-pc1 .pin-item.active b {
+    background: var(--orange);
+  }
+
+  /* — Imágenes: más grandes y completas, nunca recortadas — */
+  .asesoria-pc1 .zoomable {
+    cursor: auto;
+  }
+
+  .asesoria-pc1 .zoomable:hover img {
+    transform: none;
+    filter: none;
+  }
+
+  .asesoria-pc1 .img-grid,
+  .asesoria-pc1 .img-grid.cols-3 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+
+  .asesoria-pc1 .img-grid.cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .asesoria-pc1 .img-grid img.img-real {
+    height: auto;
+    max-height: 75mm;
+  }
+
+  .asesoria-pc1 img.img-real {
+    max-height: 120mm;
+    object-fit: contain;
+  }
+
+  .asesoria-pc1 .reveal-body .zoomable img.img-real {
+    max-height: 70mm;
+  }
+
+  .asesoria-pc1 .pin-stage .zoomable img.img-real {
+    max-height: none;
+  }
+
+  /* — Checklist: casillas VACÍAS para marcar a mano — */
+  .asesoria-pc1 .check-item.done {
+    background: #fff;
+    border-color: var(--line);
+    color: inherit;
+  }
+
+  .asesoria-pc1 .check-item.done .check-box,
+  .asesoria-pc1 .check-box {
+    background: #fff;
+    border-color: #94A3B8;
+    color: transparent;
+  }
+
+  /* — Tamaños de texto pensados para papel — */
+  .asesoria-pc1 .hero {
+    padding: 1.6rem 1.4rem 2rem;
+  }
+
+  .asesoria-pc1 .hero-title {
+    font-size: 26pt;
+  }
+
+  .asesoria-pc1 .hero-sub {
+    font-size: 11pt;
+  }
+
+  .asesoria-pc1 .page-title {
+    font-size: 20pt;
+  }
+
+  .asesoria-pc1 .block-head h2 {
+    font-size: 13pt;
+  }
+
+  .asesoria-pc1 .comp-hero h2 {
+    font-size: 15pt;
+  }
+
+  .asesoria-pc1 .subtitle {
+    font-size: 11.5pt;
+  }
+
+  .asesoria-pc1 .closing h2 {
+    font-size: 20pt;
+  }
+
+  .asesoria-pc1 .highlight-bar {
+    font-size: 14pt;
+    padding: 0.9rem;
+  }
+
+  .asesoria-pc1 .sim-question {
+    font-size: 12pt;
+  }
+
+  /* — Cortes de página: nada importante partido por la mitad — */
+  .asesoria-pc1 .callout,
+  .asesoria-pc1 .must-have,
+  .asesoria-pc1 .common-error,
+  .asesoria-pc1 .info-box,
+  .asesoria-pc1 .caution,
+  .asesoria-pc1 .state-card,
+  .asesoria-pc1 .compare-col,
+  .asesoria-pc1 .eval-card,
+  .asesoria-pc1 .tool-card,
+  .asesoria-pc1 .prof-question,
+  .asesoria-pc1 .q-row,
+  .asesoria-pc1 .img-item,
+  .asesoria-pc1 .pin-figure,
+  .asesoria-pc1 .reveal-bad,
+  .asesoria-pc1 .reveal-good,
+  .asesoria-pc1 .arch-card,
+  .asesoria-pc1 .arch-box,
+  .asesoria-pc1 .mapa,
+  .asesoria-pc1 .check-item,
+  .asesoria-pc1 .closing,
+  .asesoria-pc1 .proto-flow,
+  .asesoria-pc1 .seg-bar {
+    break-inside: avoid;
+  }
+
+  .asesoria-pc1 .comp-hero,
+  .asesoria-pc1 .block-head,
+  .asesoria-pc1 .page-head,
+  .asesoria-pc1 .subtitle,
+  .asesoria-pc1 .compare-head,
+  .asesoria-pc1 .sys-label {
+    break-after: avoid;
+  }
+
+  .asesoria-pc1 .comp-body,
+  .asesoria-pc1 .comp-hero {
+    border-radius: 0;
+  }
+
+  /* — Mapa: compacto y con flujo en línea (funciona en cualquier motor de impresión) — */
+  .asesoria-pc1 .mapa {
+    padding: 0.8rem;
+    margin-top: 0.4rem;
+  }
+
+  .asesoria-pc1 .mapa-branches {
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+  }
+
+  /* Portada + mapa en la misma hoja */
+  .asesoria-pc1 .home-section {
+    break-inside: avoid;
+    margin-top: 1rem;
+  }
+
+  .asesoria-pc1 .hero {
+    padding: 1.1rem 1.3rem 1.2rem;
+  }
+
+  .asesoria-pc1 .hero-kicker {
+    margin-bottom: 0.5rem;
+  }
+
+  .asesoria-pc1 .hero-title {
+    font-size: 23pt;
+  }
+
+  .asesoria-pc1 .hero-sub {
+    margin: 0.4rem 0 0.5rem;
+  }
+
+  .asesoria-pc1 .hero-meta {
+    margin-bottom: 0.7rem;
+  }
+
+  .asesoria-pc1 .mapa-module {
+    padding: 0.4rem;
+  }
+
+  .asesoria-pc1 .mapa-module p {
+    font-size: 7pt;
+    margin-bottom: 0.3rem;
+  }
+
+  .asesoria-pc1 .mapa-tip {
+    margin-top: 0.6rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 9pt;
+  }
+
+  /* El conector decorativo no se imprime (algunos motores lo tratan como una celda de la grilla) */
+  .asesoria-pc1 .mapa-branches::before {
+    display: none !important;
+  }
+
+  .asesoria-pc1 .chips {
+    display: block;
+  }
+
+  .asesoria-pc1 .chip {
+    display: inline-block;
+    margin: 0 0.25rem 0.25rem 0;
+    padding: 0.15rem 0.55rem 0.15rem 0.25rem;
+    font-size: 8pt;
+  }
+
+  .asesoria-pc1 .chip b {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    margin-right: 0.25rem;
+    text-align: center;
+    font-size: 6.5pt;
+  }
+}
+
+/* 17.4 · Ahorro de tinta: lo activa el JS solo mientras imprime ("💧 Ahorro de tinta").
+   Quita rellenos y degradados y deja bordes y texto negro. */
+@media print {
+
+  .asesoria-pc1.ink-saver,
+  .asesoria-pc1.ink-saver * {
+    background: transparent !important;
+    background-image: none !important;
+    color: #111 !important;
+    border-color: #777 !important;
+    text-shadow: none !important;
+  }
+
+  .asesoria-pc1.ink-saver .hero,
+  .asesoria-pc1.ink-saver .closing,
+  .asesoria-pc1.ink-saver .comp-hero,
+  .asesoria-pc1.ink-saver .block-head,
+  .asesoria-pc1.ink-saver .highlight-bar {
+    border: 2px solid #555 !important;
+  }
+
+  .asesoria-pc1.ink-saver .compare-head,
+  .asesoria-pc1.ink-saver .eval-head,
+  .asesoria-pc1.ink-saver .tool-head,
+  .asesoria-pc1.ink-saver .arch-box-head,
+  .asesoria-pc1.ink-saver .arch-card-head,
+  .asesoria-pc1.ink-saver .reveal-head,
+  .asesoria-pc1.ink-saver .mapa-branch-head {
+    border-bottom: 2px solid #555 !important;
+    font-weight: 800;
+  }
+
+  .asesoria-pc1.ink-saver .hero::before,
+  .asesoria-pc1.ink-saver .hero::after,
+  .asesoria-pc1.ink-saver .comp-hero::after {
+    display: none !important;
+  }
+
+  /* Los pines y los números deben seguir leyéndose sobre las capturas */
+  .asesoria-pc1.ink-saver .pin,
+  .asesoria-pc1.ink-saver .pin-item b,
+  .asesoria-pc1.ink-saver .chip b,
+  .asesoria-pc1.ink-saver .q-num,
+  .asesoria-pc1.ink-saver .prof-question .q-icon {
+    background: #fff !important;
+    color: #000 !important;
+    border: 2px solid #000 !important;
+  }
 }
